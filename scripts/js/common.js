@@ -189,8 +189,8 @@ function initSmoothScroll() {
 // 页面加载完成后初始化所有功能
 document.addEventListener('DOMContentLoaded', function() {
     // 加载公共组件
-    loadComponent('includes/header.html', 'header-container');
-    loadComponent('includes/footer.html', 'footer-container');
+    loadComponent('../templates/includes/header.html', 'header-container');
+    loadComponent('../templates/includes/footer.html', 'footer-container');
     
     // 等待组件加载完成后初始化功能
     setTimeout(() => {
