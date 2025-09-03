@@ -198,5 +198,17 @@ document.addEventListener('DOMContentLoaded', function() {
         initScrollHeader();
         initPageAnimations();
         initSmoothScroll();
-    }, 100);
+    }, 300);
+    
+    // 延迟更久一点初始化语言功能，确保模板完全加载
+    setTimeout(() => {
+        // 初始化语言切换功能
+        if (typeof initLanguageSwitcher === 'function') {
+            initLanguageSwitcher();
+        }
+        if (typeof switchLanguage === 'function') {
+            const currentLang = localStorage.getItem('language') || 'en';
+            switchLanguage(currentLang);
+        }
+    }, 800);
 });

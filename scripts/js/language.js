@@ -1,6 +1,9 @@
 // 双语支持系统 - 简化版本
 const translations = {
     en: {
+        // 网站名称
+        siteName: "GW-GoWorld",
+        
         // 导航菜单
         home: "Home",
         about: "About",
@@ -46,6 +49,9 @@ const translations = {
     },
     
     zh: {
+        // 网站名称
+        siteName: "沃德汽车电子",
+        
         // 导航菜单
         home: "首页",
         about: "关于我们",
@@ -96,23 +102,38 @@ let currentLanguage = localStorage.getItem('language') || 'en';
 
 // 语言切换功能
 function initLanguageSwitcher() {
+    console.log('Initializing language switcher...');
     const langToggle = document.getElementById('langToggle');
-    const currentLangSpan = document.getElementById('currentLang');
+    console.log('Language toggle element found:', langToggle);
     
-    if (langToggle && currentLangSpan) {
-        // 设置初始语言显示
-        currentLangSpan.textContent = currentLanguage.toUpperCase();
+    if (langToggle) {
+        // 设置初始语言状态
+        console.log('Current language:', currentLanguage);
+        if (currentLanguage === 'zh') {
+            langToggle.classList.add('zh');
+        }
         
         // 语言切换事件
         langToggle.addEventListener('click', function(e) {
             e.preventDefault();
+            console.log('Language toggle clicked!');
             currentLanguage = currentLanguage === 'en' ? 'zh' : 'en';
             localStorage.setItem('language', currentLanguage);
-            currentLangSpan.textContent = currentLanguage.toUpperCase();
+            console.log('Switched to language:', currentLanguage);
+            
+            // 切换按钮状态
+            if (currentLanguage === 'zh') {
+                langToggle.classList.add('zh');
+            } else {
+                langToggle.classList.remove('zh');
+            }
             
             // 切换页面语言
             switchLanguage(currentLanguage);
         });
+        console.log('Language switcher initialized successfully!');
+    } else {
+        console.error('Language toggle element NOT found!');
     }
 }
 
@@ -136,12 +157,5 @@ function switchLanguage(lang) {
 
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(() => {
-        try {
-            initLanguageSwitcher();
-            switchLanguage(currentLanguage);
-        } catch (error) {
-            console.error('Language initialization error:', error);
-        }
-    }, 500);
+    // 移除这里的重复初始化，让common.js统一管理
 });
