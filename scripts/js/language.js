@@ -62,7 +62,75 @@ const translations = {
         answer3p1: "To avoid the situation that the accessories do not match with your vehicle, we need to know the exact information of your model, year and engine model before purchase. My suggestion:",
         answer3p2: "Please provide detailed information about your vehicle, including the model, year, VIN code (vehicle identification code), etc.. We will accurately match the parts for you based on this information.",
         answer3p3: "If you have already purchased the parts, please provide the model number and proof of purchase. We will verify the accessory information, and if there is indeed a mismatch, we can arrange a return or exchange for you. All of our products enjoy one year warranty.",
-        answer3p4: "We suggest you consult our sales team before purchase, they will provide professional installation guidance."
+        answer3p4: "We suggest you consult our sales team before purchase, they will provide professional installation guidance.",
+        
+        // R&D设备页面
+        rdPageTitle: "R&D and Equipment",
+        sensorProcedureTesting: "Sensor Procedure Testing",
+        temperatureShockProcedure: "Temperature Shock Procedure",
+        corrosionTestProcedure: "Corrosion test procedure",
+        temperatureHumidityTest: "Temperature and Humidity test procedure",
+        temperatureStorageProcedure: "High and low temperature storage procedure",
+        vibrationProcedure: "Vibration procedure",
+        leakageTest: "Leakage Test",
+        automotiveFluidCompatibility: "Automotive Fluid Compatibility Experiment",
+        performanceTesting: "Performance Testing",
+        oesEngineeringTest: "OES engineering test solution",
+        
+        // Why Choose Us 区域
+        whyChooseUsTitle: "Why Choose Us",
+        feature1Text: "As a professional auto parts supplier, Go-World Auto Parts Ltd. always puts product quality in the first place.",
+        feature2Text: "With IATF 16949 quality certificate and professional sales and technical support team, we select high quality raw materials for our customers.",
+        feature3Text: "Adopting exquisite manufacturing technology, we ensure that each product can stand the test of time.",
+        feature4Text: "We are ready to respond to customers' needs and provide professional product consultation, fast logistics and distribution, perfect after-sales service and customized solutions.",
+        feature5Text: "We always adhere to the customer-centric, customer satisfaction as a measure of standards, and constantly optimize the service process and improve service quality.",
+        feature6Text: "Choosing Ningde Go-World Auto Parts Co., Ltd, you will feel not only the reliability of the products, but also the intimate and warm service.",
+        
+        // 工程创新区域
+        engineeringTitle: "ENGINEERING AND INNOVATION",
+        productionLinesTitle: "Fully-automated and semi-automated production lines",
+        productionLinesDesc: "By integrating fully-automatic and semi-automatic production equipments,we build intelligent production lines to realize efficient, precise and stable production processes, thus significantly enhancing our competitiveness.",
+        intelligentSystemTitle: "INTELLIGENT CONTROL SYSTEM",
+        intelligentSystemDesc: "With the help of Internet of Things technology, we build an intelligent control system platform to remotely monitor the production equipment, real-time data collection, fault early warning and remote debugging, so as to realize transparent and intelligent management of the production process, thus improving production efficiency, optimizing product quality, reducing operating costs and improving the enterprise's response speed to market changes.",
+        warehouseTitle: "Warehouse Management",
+        warehouseDesc: "Efficient storage solution: A combination of blue plastic crates and metal shelves is used to achieve efficient classification and storage of items.Clear labeling system: The S2 area is used for storing specific product categories, making it easy to quickly locate and manage.Clean and organized environment: Clean floor and sufficient light create a good working atmosphere.",
+        electronicStorageTitle: "Electronic Equipment Storage Rack",
+        electronicStorageDesc1: "Professional-grade design: Black metal frame structure is sturdy and durable, suitable for long time use. Modular Layout: Compartment size can be adjusted as needed to flexibly accommodate different sizes of electronic equipment and accessories. Safety Protection Measures: All wires are neatly arranged in the designated location to minimize potential safety hazards.",
+        electronicStorageDesc2: "Professional-grade design: Black metal frame structure is sturdy and durable, suitable for long time use. Modular Layout: Compartment size can be adjusted as needed to flexibly accommodate different sizes of electronic equipment and accessories. Safety Protection Measures: All wires are neatly arranged in the designated location to minimize potential safety hazards.",
+
+        // Our Service section
+        ourServiceTitle: "OUR SERVICE",
+        serviceExperience: "Have more than 12 years experience in product auto sensors.",
+        serviceCooperation: "Have cooperated with customers,purchasing group and imports in Europe for more than 10 years.",
+        serviceSemiAuto: "Semi-automatic equipment not only improves the quality and consistency of products, but also improves production efficiency and shortens delivery time.",
+        serviceTest: "100% test before sent out.",
+        serviceDesign: "Own designing team for new product development.",
+        
+        // Service table
+        tableCustomCategory: "Custom category",
+        tableOptionalRange: "Optional range",
+        tableExplain: "Explain",
+        tableSensorType: "Sensor type",
+        tablePressureTemp: "Pressure/temperature/speed",
+        tableSuitableApp: "Suitable for different application scenarios",
+        tableShellMaterial: "Shell material",
+        tablePlasticMetal: "Plastic/metal/ceramics",
+        tableAdaptEnvironment: "Adapt to different environmental needs",
+        tableProtectionGrades: "Protection grades",
+        tableIP: "IP65 / IP67 / IP68",
+        tableDustProof: "Dust-proof and waterproof grades are optional.",
+        tableSignalOutput: "Signal output",
+        tableAnalogDigital: "Analog/digital signals",
+        tableAdaptingInterface: "Adapting to different equipment interfaces",
+        tableAttendedMode: "Attended mode",
+        tableWiringHarness: "Wiring harness/connector/customized interface",
+        tableCompatibleDevices: "Compatible with different devices",
+        tableWorkingTemp: "Working temperature",
+        tableTempRange: "-40°C~150°C",
+        tableSuitableExtreme: "Suitable for extreme environment",
+        tableBrandCustom: "Brand customization",
+        tableLogoLabel: "Logo/label/color",
+        tableBrandSolutions: "Can provide brand customization solutions."
     },
     
     zh: {
@@ -127,7 +195,75 @@ const translations = {
         answer3p1: "为了避免配件与您的车辆不匹配的情况，我们需要在购买前了解您车型、年份和发动机型号的准确信息。我的建议：",
         answer3p2: "请提供您车辆的详细信息，包括车型、年份、VIN码（车辆识别代码）等。我们会根据这些信息为您准确匹配配件。",
         answer3p3: "如果您已经购买了配件，请提供型号和购买凭证。我们会核实配件信息，如果确实存在不匹配，我们可以为您安排退换货。我们所有产品都享受一年保修。",
-        answer3p4: "我们建议您在购买前咨询我们的销售团队，他们会提供专业的安装指导。"
+        answer3p4: "我们建议您在购买前咨询我们的销售团队，他们会提供专业的安装指导。",
+        
+        // R&D设备页面
+        rdPageTitle: "研发设备",
+        sensorProcedureTesting: "传感器程序测试",
+        temperatureShockProcedure: "温度冲击程序",
+        corrosionTestProcedure: "腐蚀测试程序",
+        temperatureHumidityTest: "温湿度测试程序",
+        temperatureStorageProcedure: "高低温存储程序",
+        vibrationProcedure: "振动程序",
+        leakageTest: "泄漏测试",
+        automotiveFluidCompatibility: "汽车流体兼容性实验",
+        performanceTesting: "性能测试",
+        oesEngineeringTest: "OES工程测试解决方案",
+        
+        // Why Choose Us 区域
+        whyChooseUsTitle: "为什么选择我们",
+        feature1Text: "作为专业的汽车零部件供应商，高世界汽车配件有限公司始终将产品质量放在首位。",
+        feature2Text: "拥有IATF 16949质量认证和专业的销售技术支持团队，我们为客户精选优质原材料。",
+        feature3Text: "采用精湛的制造技术，我们确保每个产品都能经得起时间的考验。",
+        feature4Text: "我们时刻准备响应客户需求，提供专业的产品咨询、快速物流配送、完善的售后服务和定制化解决方案。",
+        feature5Text: "我们始终坚持以客户为中心，以客户满意度为衡量标准，不断优化服务流程，提升服务质量。",
+        feature6Text: "选择宁德高世界汽车配件有限公司，您将感受到的不仅是产品的可靠性，更有贴心温暖的服务。",
+        
+        // 工程创新区域
+        engineeringTitle: "工程与创新",
+        productionLinesTitle: "全自动化和半自动化生产线",
+        productionLinesDesc: "通过整合全自动化和半自动化生产设备，我们构建智能生产线，实现高效、精确、稳定的生产过程，从而显著增强我们的竞争力。",
+        intelligentSystemTitle: "智能控制系统",
+        intelligentSystemDesc: "借助物联网技术，我们构建智能控制系统平台，远程监控生产设备，实时数据采集，故障预警和远程调试，实现生产过程的透明化智能管理，从而提高生产效率，优化产品质量，降低运营成本，提升企业对市场变化的响应速度。",
+        warehouseTitle: "仓库管理",
+        warehouseDesc: "高效存储解决方案：采用蓝色塑料箱和金属货架的组合，实现物品的高效分类和存储。清晰标识系统：S2区域用于存储特定产品类别，便于快速定位和管理。整洁有序的环境：清洁的地面和充足的照明创造良好的工作氛围。",
+        electronicStorageTitle: "电子设备存储架",
+        electronicStorageDesc1: "专业级设计：黑色金属框架结构坚固耐用，适合长期使用。模块化布局：隔间尺寸可根据需要调整，灵活容纳不同尺寸的电子设备和配件。安全防护措施：所有线路都整齐排列在指定位置，最大限度减少潜在安全隐患。",
+        electronicStorageDesc2: "专业级设计：黑色金属框架结构坚固耐用，适合长期使用。模块化布局：隔间尺寸可根据需要调整，灵活容纳不同尺寸的电子设备和配件。安全防护措施：所有线路都整齐排列在指定位置，最大限度减少潜在安全隐患。",
+
+        // Our Service section
+        ourServiceTitle: "我们的服务",
+        serviceExperience: "在产品自动传感器方面拥有超过12年的经验。",
+        serviceCooperation: "与客户、采购集团和欧洲进口商合作超过10年。",
+        serviceSemiAuto: "半自动设备不仅提高了产品的质量和一致性，还提高了生产效率，缩短了交货时间。",
+        serviceTest: "发货前100%测试。",
+        serviceDesign: "拥有新产品开发的设计团队。",
+        
+        // Service table
+        tableCustomCategory: "定制类别",
+        tableOptionalRange: "可选范围",
+        tableExplain: "说明",
+        tableSensorType: "传感器类型",
+        tablePressureTemp: "压力/温度/速度",
+        tableSuitableApp: "适用于不同应用场景",
+        tableShellMaterial: "外壳材料",
+        tablePlasticMetal: "塑料/金属/陶瓷",
+        tableAdaptEnvironment: "适应不同环境需求",
+        tableProtectionGrades: "防护等级",
+        tableIP: "IP65 / IP67 / IP68",
+        tableDustProof: "防尘防水等级可选。",
+        tableSignalOutput: "信号输出",
+        tableAnalogDigital: "模拟/数字信号",
+        tableAdaptingInterface: "适应不同设备接口",
+        tableAttendedMode: "连接方式",
+        tableWiringHarness: "线束/连接器/定制接口",
+        tableCompatibleDevices: "兼容不同设备",
+        tableWorkingTemp: "工作温度",
+        tableTempRange: "-40°C~150°C",
+        tableSuitableExtreme: "适用于极端环境",
+        tableBrandCustom: "品牌定制",
+        tableLogoLabel: "Logo/标签/颜色",
+        tableBrandSolutions: "可提供品牌定制解决方案。"
     }
 };
 
