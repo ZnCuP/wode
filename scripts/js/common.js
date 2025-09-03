@@ -213,20 +213,21 @@ function initSmoothScroll() {
 // 页面加载完成后初始化所有功能
 document.addEventListener('DOMContentLoaded', function() {
     // 加载公共组件
-    loadComponent('../templates/includes/header.html', 'header-container');
-    loadComponent('../templates/includes/footer.html', 'footer-container');
+    if (document.getElementById('header-container')) {
+        loadComponent('../templates/includes/header.html', 'header-container');
+    }
+    if (document.getElementById('footer-container')) {
+        loadComponent('../templates/includes/footer.html', 'footer-container');
+    }
     
-    // 等待组件加载完成后初始化功能
+    // 直接初始化功能，不需要加载外部模板
     setTimeout(() => {
         initMobileMenu();
         initScrollHeader();
         initPageAnimations();
         initSmoothScroll();
         initFooterDropdowns();
-    }, 300);
-    
-    // 延迟更久一点初始化语言功能，确保模板完全加载
-    setTimeout(() => {
+        
         // 初始化语言切换功能
         if (typeof initLanguageSwitcher === 'function') {
             initLanguageSwitcher();
@@ -235,5 +236,5 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentLang = localStorage.getItem('language') || 'en';
             switchLanguage(currentLang);
         }
-    }, 800);
+    }, 100); // 稍微延迟以确保组件已加载
 });

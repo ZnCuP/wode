@@ -132,6 +132,47 @@ const translations = {
         tableLogoLabel: "Logo/label/color",
         tableBrandSolutions: "Can provide brand customization solutions.",
 
+        // Sales Worldwide section
+        salesWorldwide: "SALES WORLDWIDE",
+        exportMarkets: "WE DO 100% EXPORT TO OVERSEA MARKETS",
+        mainlyRegions: "Mainly in Europe and North America",
+        salesDescription: "Go world do 100% export to oversea markets, mainly in Europe and North America like: Germany, United Kingdom, France, Italy, Denmark, Poland, United State of America, Canada and so on. Go world is qualified with IATF 16949, REACH and EMC.",
+        readMore: "READ MORE",
+
+        // Products showcase
+        viewFeaturedProducts: "VIEW FEATURED PRODUCTS",
+        oilLevelSensor: "OIL LEVEL SENSOR",
+        steeringAngleSensor: "STEERING ANGLE SENSOR",
+        heightLevelSensor: "HEIGHT LEVEL SENSOR",
+        mapSensor: "MAP SENSOR",
+        dieselGlowController: "Diesel Glow Plug Controller",
+        dpfSensor: "DPF SENSOR",
+        viewMore: "VIEW MORE",
+
+        // Go-World Information section
+        goWorldInfoTitle: "GO-WORLD INFORMATION",
+        companyLocation: "Ningde Go-World Auto Spare Parts Co.,LTD., located in Fu'an city, Fujian province,China.",
+        companyDescription: "It is a professional manufacture specialized in emission control system and engine management system,like",
+        mapSensorFull: "MAP sensor",
+        oilLevelSensorFull: "oil level sensor",
+        dpfSensorFull: "DPF Sensor",
+        egtSensorFull: "EGT Sensor",
+        steeringAngleSensorFull: "steering angle sensor",
+        glowPlugControllerFull: "Glow Plug Controller",
+
+        // Contact Response section
+        lookingForwardTitle: "Looking Forward To Your Response",
+        moreInfoText: "For More Information and Favorable Price,Please Contact Us!",
+        phoneLabel: "Phone: ",
+        wechatLabel1: "Telephone/wechat: ",
+        wechatLabel2: "Telephone/wechat: ",
+        emailLabel: "Email: ",
+        addressLabel: "Addr: ",
+        fullAddress: "Shangtang Industrial Zone,Gantang Town, Fuan, <br>Ningde City, Fujian Province, P.R. China 355009",
+        contactUsTitle: "Contact us"
+    },
+    zh: {
+
         // Contact page
         contactPageTitle: "Contact Us",
         certificationsTitle: "OUR CERTIFICATIONS",
@@ -285,6 +326,45 @@ const translations = {
         tableLogoLabel: "Logo/标签/颜色",
         tableBrandSolutions: "可提供品牌定制解决方案。",
 
+        // Sales Worldwide section
+        salesWorldwide: "全球销售",
+        exportMarkets: "我们100%出口到海外市场",
+        mainlyRegions: "主要在欧洲和北美",
+        salesDescription: "沃德汽车电子100%出口到海外市场，主要在欧洲和北美，如：德国、英国、法国、意大利、丹麦、波兰、美国、加拿大等。沃德汽车电子拥有IATF 16949、REACH和EMC认证。",
+        readMore: "阅读更多",
+
+        // Products showcase
+        viewFeaturedProducts: "查看精选产品",
+        oilLevelSensor: "油位传感器",
+        steeringAngleSensor: "转向角度传感器",
+        heightLevelSensor: "高度液位传感器",
+        mapSensor: "进气压力传感器",
+        dieselGlowController: "柴油预热塞控制器",
+        dpfSensor: "DPF传感器",
+        viewMore: "查看更多",
+
+        // Go-World Information section
+        goWorldInfoTitle: "沃德汽车信息",
+        companyLocation: "宁德沃德汽车配件有限公司，位于中国福建省福安市。",
+        companyDescription: "是一家专业从事排放控制系统和发动机管理系统的制造商，如",
+        mapSensorFull: "进气压力传感器",
+        oilLevelSensorFull: "油位传感器",
+        dpfSensorFull: "DPF传感器",
+        egtSensorFull: "排气温度传感器",
+        steeringAngleSensorFull: "转向角传感器",
+        glowPlugControllerFull: "预热塞控制器",
+
+        // Contact Response section
+        lookingForwardTitle: "期待您的回复",
+        moreInfoText: "如需更多信息和优惠价格，请联系我们！",
+        phoneLabel: "电话: ",
+        wechatLabel1: "电话/微信: ",
+        wechatLabel2: "电话/微信: / ",
+        emailLabel: "邮箱: ",
+        addressLabel: "地址: ",
+        fullAddress: "中国福建省宁德市福安市<br>甘棠镇上塘工业区 355009",
+        contactUsTitle: "联系我们",
+
         // Contact page
         contactPageTitle: "联系我们",
         certificationsTitle: "我们的认证",
@@ -358,9 +438,9 @@ function switchLanguage(lang) {
         if (translation[key]) {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                 element.placeholder = translation[key];
-            } else if (key === 'contactAddress') {
-                // 特殊处理地址，将 \n 转换为 <br>
-                element.innerHTML = translation[key].replace(/\\n/g, '<br>');
+            } else if (key === 'contactAddress' || key === 'fullAddress') {
+                // 特殊处理地址，将 <br> 标签渲染为 HTML
+                element.innerHTML = translation[key];
             } else {
                 element.textContent = translation[key];
             }

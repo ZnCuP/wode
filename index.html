@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go World Industrial Co., Ltd</title>
+    <link rel="stylesheet" href="styles/css/common.css">
+    <link rel="stylesheet" href="styles/css/language.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span data-translate="siteName">Go World Industrial Co., Ltd</span>
+            </div>
+            <nav class="nav">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link" data-translate="home">Home</a>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link" data-translate="products">Products</a>
+                    <div class="dropdown-content">
+                        <a href="pages/rd-equipment.html" data-translate="rdEquipment">R&D Equipment</a>
+                        <a href="#" data-translate="oilLevelSensor">Oil Level Sensor</a>
+                        <a href="#" data-translate="heightLevelSensor">Height Level Sensor</a>
+                        <a href="#" data-translate="dpfSensor">DPF Sensor</a>
+                        <a href="#" data-translate="steeringAngleSensor">Steering Angle Sensor</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link" data-translate="services">Services</a>
+                    <div class="dropdown-content">
+                        <a href="#" data-translate="consulting">Consulting</a>
+                        <a href="#" data-translate="support">Support</a>
+                        <a href="#" data-translate="maintenance">Maintenance</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link" data-translate="about">About</a>
+                    <div class="dropdown-content">
+                        <a href="#" data-translate="company">Company</a>
+                        <a href="#" data-translate="team">Team</a>
+                        <a href="#" data-translate="history">History</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="pages/faq.html" class="nav-link" data-translate="faq">FAQ</a>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="pages/contact.html" class="nav-link" data-translate="contact">Contact</a>
+                </div>
+                <button class="language-toggle" id="langToggle">
+                    <span class="lang-text">EN</span>
+                </button>
+            </nav>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Hero Section -->
+    <main class="hero-section">
+        <img src="assets/main.png" alt="Go World Industrial" class="hero-image">
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <span data-translate="siteName">Go World Industrial Co., Ltd</span>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link facebook-link">
+                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.29688 2.71875H7.46875V0.109375H5.29688C4.75521 0.109375 4.25 0.244792 3.78125 0.515625C3.3125 0.786458 2.94271 1.15625 2.67188 1.625C2.40104 2.09375 2.26562 2.59896 2.26562 3.14062V4.4375H0.53125V7.04688H2.26562V13.9688H4.85938V7.04688H7.03125L7.46875 4.4375H4.85938V3.14062C4.85938 3.02604 4.90365 2.92708 4.99219 2.84375C5.08073 2.76042 5.18229 2.71875 5.29688 2.71875Z" fill="#0066CC"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link linkedin-link">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.0625 1.75C3.0625 2.71875 2.34375 3.5 1.3125 3.5C0.34375 3.5 -0.375 2.71875 -0.375 1.75C-0.375 0.71875 0.34375 0 1.3125 0C2.34375 0 3.0625 0.71875 3.0625 1.75ZM3.0625 4.8125H-0.375V14H3.0625V4.8125ZM7.875 4.8125H4.4375V14H7.875V9.1875C7.875 6.0625 12.0625 5.78125 12.0625 9.1875V14H15.5V8.09375C15.5 2.4375 9.1875 2.65625 7.875 5.21875V4.8125Z" fill="#0066CC"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-menu">
+                <h3 class="footer-menu-title">MENU</h3>
+                <div class="footer-nav">
+                    <div class="footer-nav-section">
+                        <a href="#" class="footer-nav-link" data-translate="home">Home</a>
+                        <div class="footer-nav-group">
+                            <a href="#" class="footer-nav-link main" data-translate="products">Products</a>
+                            <div class="footer-nav-sub">
+                                <a href="pages/rd-equipment.html" class="footer-nav-link sub" data-translate="rdEquipment">R&D Equipment</a>
+                                <a href="#" class="footer-nav-link sub" data-translate="oilLevelSensor">Oil Level Sensor</a>
+                                <a href="#" class="footer-nav-link sub" data-translate="heightLevelSensor">Height Level Sensor</a>
+                                <a href="#" class="footer-nav-link sub" data-translate="dpfSensor">DPF Sensor</a>
+                                <a href="#" class="footer-nav-link sub" data-translate="steeringAngleSensor">Steering Angle Sensor</a>
+                            </div>
+                        </div>
+                        <div class="footer-nav-group">
+                            <a href="#" class="footer-nav-link main" data-translate="services">Services</a>
+                            <div class="footer-nav-sub">
+                                <a href="#" class="footer-nav-link sub" data-translate="consulting">Consulting</a>
+                                <a href="#" class="footer-nav-link sub" data-translate="support">Support</a>
+                                <a href="#" class="footer-nav-link sub" data-translate="maintenance">Maintenance</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-nav-section">
+                        <div class="footer-nav-group">
+                            <a href="#" class="footer-nav-link main" data-translate="about">About</a>
+                            <div class="footer-nav-sub">
+                                <a href="#" class="footer-nav-link sub" data-translate="company">Company</a>
+                                <a href="#" class="footer-nav-link sub" data-translate="team">Team</a>
+                                <a href="#" class="footer-nav-link sub" data-translate="history">History</a>
+                            </div>
+                        </div>
+                        <a href="pages/faq.html" class="footer-nav-link" data-translate="faq">FAQ</a>
+                        <a href="pages/contact.html" class="footer-nav-link" data-translate="contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <div class="footer-contact-group">
+                    <p><strong data-translate="footerAddress">Add: Shangtang Industrial Zone,<br>Gantang Town, Fuan, Ningde City,<br>Fujian Province, P.R. China 355009</strong></p>
+                </div>
+                <div class="footer-contact-group">
+                    <p><strong data-translate="footerEmail">Email: sales@go-world.cn</strong></p>
+                    <p><strong data-translate="footerPhone">Phone: +86-0593-2828185</strong></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/js/language.js"></script>
+    <script src="scripts/js/common.js"></script>
+</body>
+</html>
