@@ -130,7 +130,27 @@ const translations = {
         tableSuitableExtreme: "Suitable for extreme environment",
         tableBrandCustom: "Brand customization",
         tableLogoLabel: "Logo/label/color",
-        tableBrandSolutions: "Can provide brand customization solutions."
+        tableBrandSolutions: "Can provide brand customization solutions.",
+
+        // Contact page
+        contactPageTitle: "Contact Us",
+        certificationsTitle: "OUR CERTIFICATIONS",
+        certificationsDesc: "Our company has been awarded TS certification",
+        contactInfoTitle: "WHERE CAN YOU CONTACT US?",
+        contactSubtitle: "CONTACT",
+        contactAddress: "Add: Shangtang Industrial Zone,Gantang Town, Fuan, \\nNingde City, Fujian Province, P.R. China 355009",
+        contactEmail: "Email: sales@go-world.cn",
+        contactPhone: "Phone: +86-0593-2828185",
+        
+        // Contact form
+        formTitle: "GET IN TOUCH",
+        formDescription: "We would love to hear from you. Send us a message and we'll respond as soon as possible.",
+        namePlaceholder: "Name",
+        corporateNamePlaceholder: "Corporate Name",
+        telephonePlaceholder: "*Telephone",
+        emailPlaceholder: "*Email",
+        messagePlaceholder: "*Message",
+        submitBtn: "Submit"
     },
     
     zh: {
@@ -263,7 +283,27 @@ const translations = {
         tableSuitableExtreme: "适用于极端环境",
         tableBrandCustom: "品牌定制",
         tableLogoLabel: "Logo/标签/颜色",
-        tableBrandSolutions: "可提供品牌定制解决方案。"
+        tableBrandSolutions: "可提供品牌定制解决方案。",
+
+        // Contact page
+        contactPageTitle: "联系我们",
+        certificationsTitle: "我们的认证",
+        certificationsDesc: "我们公司已获得TS认证",
+        contactInfoTitle: "您可以在哪里联系我们？",
+        contactSubtitle: "联系方式",
+        contactAddress: "地址：中国福建省宁德市福安市甘棠镇上塘工业区, \\n355009",
+        contactEmail: "邮箱：sales@go-world.cn",
+        contactPhone: "电话：+86-0593-2828185",
+        
+        // Contact form
+        formTitle: "联系我们",
+        formDescription: "我们很乐意听到您的声音。请给我们留言，我们会尽快回复。",
+        namePlaceholder: "姓名",
+        corporateNamePlaceholder: "公司名称",
+        telephonePlaceholder: "*电话",
+        emailPlaceholder: "*邮箱",
+        messagePlaceholder: "*留言",
+        submitBtn: "提交"
     }
 };
 
@@ -318,6 +358,9 @@ function switchLanguage(lang) {
         if (translation[key]) {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                 element.placeholder = translation[key];
+            } else if (key === 'contactAddress') {
+                // 特殊处理地址，将 \n 转换为 <br>
+                element.innerHTML = translation[key].replace(/\\n/g, '<br>');
             } else {
                 element.textContent = translation[key];
             }
