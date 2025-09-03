@@ -414,7 +414,7 @@ nav ul li a:hover {
 
 /* ============ FOOTER 样式 - 全新构建 ============ */
 footer {
-    background-color: #2c3e50;
+    background-color: rgb(1, 51, 102);
     color: #ffffff;
     padding: 40px 0 20px;
     margin-top: 50px;
@@ -422,54 +422,55 @@ footer {
 
 .footer-content {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1.8fr;
     gap: 40px;
     align-items: start;
 }
 
 /* 左侧：Logo + 公司信息 + 社交媒体 */
 .footer-left {
-    padding-right: 20px;
+    padding-right: 30px;
 }
 
 .footer-logo {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    text-align: left;
 }
 
 .footer-logo-img {
-    height: 50px;
+    height: 60px;
     width: auto;
-}
-
-.footer-logo-text {
-    font-size: 28px;
-    font-weight: bold;
-    color: #ffffff;
     display: block;
-    line-height: 1.2;
 }
 
 .company-description {
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    color: #bdc3c7;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    color: #ffffff;
+    font-family: Inter, sans-serif;
 }
 
 .social-icons {
     display: flex;
-    gap: 15px;
+    gap: 20px;
+    align-items: center;
 }
 
 .social-icon {
-    font-size: 24px;
-    text-decoration: none;
-    transition: transform 0.3s ease;
     display: inline-block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.social-icon img {
+    height: 32px;
+    width: 32px;
+    object-fit: contain;
 }
 
 .social-icon:hover {
-    transform: scale(1.2);
+    transform: scale(1.15);
+    opacity: 0.8;
 }
 
 /* 中间：MENU */
@@ -485,50 +486,112 @@ footer {
     list-style: none;
 }
 
-.menu-list li {
-    margin-bottom: 10px;
+.menu-list > li {
+    margin-bottom: 12px;
 }
 
-.menu-list li a {
+/* 直接链接项（如Home, Contact等） */
+.menu-list > li > a {
     color: #bdc3c7;
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s ease;
     display: block;
+    position: relative;
+    padding-left: 15px;
 }
 
-.menu-list li a:hover {
+.menu-list > li > a:before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.menu-list > li > a:hover {
     color: #ffffff;
 }
 
+/* 下拉菜单触发器（如About, Service等） */
 .footer-dropdown .dropdown-trigger {
     color: #bdc3c7;
     cursor: pointer;
     font-size: 14px;
     display: block;
     transition: color 0.3s ease;
+    position: relative;
+    padding-left: 15px;
+}
+
+.footer-dropdown .dropdown-trigger:before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.footer-dropdown.active .dropdown-trigger:before {
+    transform: translateY(-50%) rotate(90deg);
 }
 
 .footer-dropdown .dropdown-trigger:hover {
     color: #ffffff;
 }
 
+/* 下拉菜单内容 */
 .footer-dropdown-menu {
     list-style: none;
-    margin-left: 15px;
-    margin-top: 5px;
+    margin-left: 20px;
+    margin-top: 8px;
+    border-left: 1px solid #34495e;
+    padding-left: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.footer-dropdown.active .footer-dropdown-menu {
+    max-height: 200px;
 }
 
 .footer-dropdown-menu li {
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 }
 
 .footer-dropdown-menu a {
     font-size: 13px;
     color: #95a5a6;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    padding-left: 12px;
+    transition: color 0.3s ease;
+}
+
+.footer-dropdown-menu a:before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7f8c8d;
+    font-size: 10px;
 }
 
 .footer-dropdown-menu a:hover {
+    color: #ffffff;
+}
+
+.footer-dropdown-menu a:hover:before {
     color: #ffffff;
 }
 
@@ -541,22 +604,39 @@ footer {
     text-transform: uppercase;
 }
 
-.products-grid {
+.products-list {
     list-style: none;
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 8px;
 }
 
-.products-grid li a {
+.products-list li {
+    margin-bottom: 6px;
+}
+
+.products-list li a {
     color: #bdc3c7;
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s ease;
     display: block;
+    position: relative;
+    padding-left: 15px;
 }
 
-.products-grid li a:hover {
+.products-list li a:before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.products-list li a:hover {
     color: #ffffff;
 }
 
@@ -574,43 +654,23 @@ footer {
     font-size: 14px;
     margin-bottom: 8px;
     line-height: 1.4;
+    word-break: keep-all;
+    white-space: nowrap;
+}
+
+.contact-details p.contact-spacer {
+    margin-top: 24px;
 }
 
 /* 移动端响应式 */
 @media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: center;
-    }
-    
-    .footer-left {
-        padding-right: 0;
-    }
-    
-    .social-icons {
-        justify-content: center;
-    }
-    
-    .footer-dropdown-menu {
-        margin-left: 0;
-    }
-    
-    .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+    footer {
+        display: none;
     }
 }
 
 @media (max-width: 480px) {
     footer {
-        padding: 30px 0 15px;
-    }
-    
-    .footer-content {
-        gap: 25px;
-    }
-    
-    .products-grid {
-        grid-template-columns: 1fr;
+        display: none;
     }
 }

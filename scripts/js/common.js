@@ -136,6 +136,30 @@ function initMobileMenu() {
     }
 }
 
+// 底部下拉菜单功能
+function initFooterDropdowns() {
+    const footerDropdowns = document.querySelectorAll('.footer-dropdown');
+    
+    footerDropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        const menu = dropdown.querySelector('.footer-dropdown-menu');
+        
+        if (trigger && menu) {
+            trigger.addEventListener('click', function() {
+                // 切换当前下拉菜单
+                dropdown.classList.toggle('active');
+                
+                // 关闭其他下拉菜单（可选，保持只有一个展开）
+                footerDropdowns.forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown) {
+                        otherDropdown.classList.remove('active');
+                    }
+                });
+            });
+        }
+    });
+}
+
 // 滚动时的头部样式变化
 function initScrollHeader() {
     const header = document.querySelector('header');
@@ -198,6 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initScrollHeader();
         initPageAnimations();
         initSmoothScroll();
+        initFooterDropdowns();
     }, 300);
     
     // 延迟更久一点初始化语言功能，确保模板完全加载
