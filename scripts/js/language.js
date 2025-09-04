@@ -479,7 +479,14 @@ function initLanguageSwitcher() {
         console.log('Current language:', currentLanguage);
         if (currentLanguage === 'zh') {
             langToggle.classList.add('zh');
+        } else {
+            langToggle.classList.remove('zh');
         }
+        
+        // 添加调试信息
+        langToggle.addEventListener('mousedown', function() {
+            console.log('Mouse down detected on language toggle');
+        });
         
         // 语言切换事件
         langToggle.addEventListener('click', function(e) {

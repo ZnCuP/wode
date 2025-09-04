@@ -712,6 +712,18 @@ footer {
     overflow: hidden;
 }
 
+/* News页面的banner样式 - 和FAQ页面保持一致 */
+.news-banner {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* 统一的Top Banner样式 */
+.top-banner {
+    width: 100%;
+}
+
+.top-banner img,
 .banner-image {
     width: 100%;
     height: 300px;
@@ -721,6 +733,11 @@ footer {
 
 /* FAQ内容区域 */
 .faq-section {
+    padding: 40px 0 30px 0;
+}
+
+/* News区域样式 - 和FAQ区域相同 */
+.news-section {
     padding: 40px 0 30px 0;
 }
 
@@ -735,6 +752,367 @@ footer {
     text-align: left;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     letter-spacing: 2px;
+}
+
+/* News标题样式 - 和FAQ标题完全相同 */
+.news-title {
+    font-family: "Inter", sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    font-style: italic;
+    color: #333;
+    margin-bottom: 60px;
+    text-align: left;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 2px;
+}
+
+/* News Grid Styles */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 60px auto;
+    padding: 0 20px;
+}
+
+.news-card {
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: 400x;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.news-card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+.news-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover .news-card-image img {
+    transform: scale(1.05);
+}
+
+.news-card-content {
+    padding: 18px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.news-card-date {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.news-card-excerpt {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.load-more-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.load-more-btn {
+    background-color: #ff9500;
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.load-more-btn:hover {
+    background-color: #e6850e;
+}
+
+/* News 响应式设计 */
+@media (max-width: 992px) {
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .news-section {
+        padding: 40px 0;
+    }
+    
+    .news-title {
+        font-size: 36px;
+        margin-bottom: 40px;
+    }
+    
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .news-card {
+        height: auto;
+    }
+}
+
+/* Article Detail Styles */
+.article-detail-section {
+    padding: 60px 0;
+    background-color: #ffffff;
+}
+
+.back-button-container {
+    margin-bottom: 40px;
+}
+
+.back-button {
+    background: none;
+    border: 2px solid #ff9500;
+    color: #ff9500;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #ff9500;
+    color: white;
+}
+
+.article-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.article-header {
+    padding: 40px 40px 20px 40px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.article-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.article-date {
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+}
+
+.article-image {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.article-body {
+    padding: 40px;
+    line-height: 1.8;
+    font-size: 16px;
+    color: #333;
+}
+
+.article-body p {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.article-body h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 30px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ff9500;
+}
+
+.article-body h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 25px 0 15px 0;
+}
+
+.related-articles {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.related-articles h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.related-card {
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.related-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.related-card-image {
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+}
+
+.related-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.related-card:hover .related-card-image img {
+    transform: scale(1.05);
+}
+
+.related-card-content {
+    padding: 20px;
+}
+
+.related-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.related-card-date {
+    font-size: 12px;
+    color: #999;
+}
+
+/* Article Detail 响应式设计 */
+@media (max-width: 768px) {
+    .article-detail-section {
+        padding: 40px 0;
+    }
+    
+    .article-content {
+        margin: 0 20px;
+    }
+    
+    .article-header {
+        padding: 30px 25px 15px 25px;
+    }
+    
+    .article-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .article-image {
+        height: 250px;
+    }
+    
+    .article-body {
+        padding: 30px 25px;
+        font-size: 15px;
+    }
+    
+    .related-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .related-articles {
+        margin-top: 60px;
+    }
+    
+    .related-articles h2 {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
 }
 
 /* FAQ容器 */
@@ -827,7 +1205,9 @@ footer {
 
 /* 移动端响应式 */
 @media (max-width: 768px) {
-    .banner-image {
+    .top-banner img,
+    .banner-image,
+    .top-banner-img {
         height: 200px;
     }
     
@@ -869,7 +1249,9 @@ footer {
 }
 
 @media (max-width: 480px) {
-    .banner-image {
+    .top-banner img,
+    .banner-image,
+    .top-banner-img {
         height: 150px;
     }
     
@@ -1506,13 +1888,6 @@ footer {
 .contact-banner {
     width: 100%;
     overflow: hidden;
-}
-
-.contact-banner .banner-image {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    display: block;
 }
 
 /* Contact Page - Certifications Section Styles */
@@ -2721,9 +3096,9 @@ footer {
 
 .top-banner-img {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 300px;
     object-fit: cover;
+    display: block;
 }
 
 /* Profile Content Section */
