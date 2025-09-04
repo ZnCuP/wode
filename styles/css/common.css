@@ -3020,6 +3020,120 @@ footer {
     }
 }
 
+/* ============ VIDEOS PAGE 样式 ============ */
+.videos-content {
+    padding: 60px 0;
+    background-color: rgb(255, 255, 255);
+}
+
+.videos-main-title {
+    font-size: 36px;
+    font-weight: 300;
+    font-style: italic;
+    color: #333;
+    text-align: left;
+    margin: 0 0 40px 0;
+    line-height: 1.2;
+}
+
+.video-category {
+    margin-bottom: 60px;
+}
+
+.category-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 20px 0;
+    text-align: left;
+}
+
+.category-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin: 0 0 40px 0;
+    text-align: left;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.video-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.video-container {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.video-container video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.video-title {
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    margin: 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .videos-content {
+        padding: 40px 0;
+    }
+    
+    .videos-main-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    
+    .video-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .category-title {
+        font-size: 20px;
+    }
+    
+    .category-description {
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .videos-content {
+        padding: 30px 0;
+    }
+    
+    .videos-main-title {
+        font-size: 24px;
+    }
+    
+    .category-title {
+        font-size: 18px;
+    }
+    
+    .video-title {
+        font-size: 14px;
+    }
+}
+
 @media (max-width: 480px) {
     .history-years {
         grid-template-columns: repeat(2, 1fr);

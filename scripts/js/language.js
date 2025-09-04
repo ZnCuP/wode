@@ -197,7 +197,18 @@ const translations = {
         historyEvent2018: "Global market presence",
         historyDescription2018: "Established global distribution network and partnerships, serving customers worldwide with reliable automotive solutions.",
         historyEvent2025: "Future vision and innovation",
-        historyDescription2025: "Continuing to lead in automotive sensing technology with next-generation products and sustainable manufacturing practices."
+        historyDescription2025: "Continuing to lead in automotive sensing technology with next-generation products and sustainable manufacturing practices.",
+
+        // Videos page
+        videosMainTitle: "Video List on MAP Sensor and Oil Level Sensor",
+        mapSensorTitle: "MAP SENSOR",
+        mapSensorDescription: "In this category, you will find a comprehensive collection of video tutorials on MAP Sensors (Intake Manifold Pressure Sensors) provided by Ningde Go-World Auto Spare Parts Co., LTD. These videos cover everything from sensor demonstration, installation, and troubleshooting to performance optimization. Our R&D team ensures that all content meets OE requirements and customer standards. Whether you're a DIY enthusiast or an automotive professional, these videos provide valuable insights and practical tips to help you effectively understand and manage your vehicle's MAP sensor system. Join us as we share our expertise in emission control systems and engine management systems.",
+        video1Title: "06B906051 MAP Sensor Product Showcase",
+        video2Title: "03C906051 MAP Sensor Product Showcase",
+        oilLevelSensorTitle: "OIL LEVEL SENSOR",
+        oilLevelSensorDescription: "In this category, you will find a comprehensive collection of video tutorials on Oil Level Sensors. These videos cover everything from installation and troubleshooting to maintenance, helping you better understand and manage your vehicle's oil level sensor system. Whether you're a DIY enthusiast or an automotive professional, these videos will provide valuable information and practical tips to ensure your engine's performance remains at its best.",
+        video3Title: "1J0907660B Oil Level Sensor Product Showcase",
+        video4Title: "0011530532 Oil Level Sensor Product Showcase"
     },
     zh: {
 
@@ -420,6 +431,17 @@ const translations = {
         historyDescription2018: "建立全球分销网络和合作伙伴关系，为全球客户提供可靠的汽车解决方案。",
         historyEvent2025: "未来愿景与创新",
         historyDescription2025: "继续在汽车传感技术领域领先，推出下一代产品和可持续制造实践。",
+
+        // Videos page
+        videosMainTitle: "MAP传感器和油位传感器视频列表",
+        mapSensorTitle: "MAP传感器",
+        mapSensorDescription: "在此类别中，您将找到由宁德沃德汽车配件有限公司提供的MAP传感器（进气歧管压力传感器）视频教程的综合集合。这些视频涵盖了从传感器演示、安装和故障排除到性能优化的所有内容。我们的研发团队确保所有内容都符合OE要求和客户标准。无论您是DIY爱好者还是汽车专业人士，这些视频都提供了宝贵的见解和实用技巧，帮助您有效理解和管理车辆的MAP传感器系统。加入我们，分享我们在排放控制系统和发动机管理系统方面的专业知识。",
+        video1Title: "06B906051 MAP传感器产品展示",
+        video2Title: "03C906051 MAP传感器产品展示",
+        oilLevelSensorTitle: "油位传感器",
+        oilLevelSensorDescription: "在此类别中，您将找到油位传感器视频教程的综合集合。这些视频涵盖了从安装和故障排除到维护的所有内容，帮助您更好地理解和管理车辆的油位传感器系统。无论您是DIY爱好者还是汽车专业人士，这些视频都将提供有价值的信息和实用技巧，确保您的发动机性能保持最佳状态。",
+        video3Title: "1J0907660B 油位传感器产品展示",
+        video4Title: "0011530532 油位传感器产品展示",
 
         // Contact page
         contactPageTitle: "联系我们",
