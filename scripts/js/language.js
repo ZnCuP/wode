@@ -169,7 +169,35 @@ const translations = {
         emailLabel: "Email: ",
         addressLabel: "Addr: ",
         fullAddress: "Shangtang Industrial Zone,Gantang Town, Fuan, <br>Ningde City, Fujian Province, P.R. China 355009",
-        contactUsTitle: "Contact us"
+        contactUsTitle: "Contact us",
+
+        // Profile page
+        aboutGoWorldTitle: "About Go-World Auto Spare Parts",
+        companyTagline: "Innovation. Precision. Reliability.",
+        companyDescriptionFull: "Ningde Go-World Auto Spare Parts Co., Ltd. was founded in 2008, it is a leading global manufacturer of high-performance emission control systems and engine management solutions, headquartered in Fu'an City, Fujian Province, China. Specializing in precision-engineered components—including Oil Level Sensors,Height Level Sensor,Steering Angle Sensors,Glow Plug Controllers,MAP sensors, DPF sensors and EGT sensors—we deliver OE-equivalent quality to the automotive aftermarket. Our company adheres to the principle of \"learning the new while facing the world.\" Looking ahead, we will continuously innovate and make unremitting efforts to enhance our product quality and service standards.",
+
+        // Engineering Excellence section
+        engineeringExcellence: "Engineering Excellence",
+        engineeringDescription: "Our dedicated R&D team with 43 engineers,we designs and tests every product to meet OEM specifications and international standards. With semi-automated assembly lines, advanced testing processes, and OES-compliant validation, we ensure unmatched reliability, efficiency, and performance in every component.",
+
+        // Corporate History section
+        corporateHistoryTitle: "Corporate History",
+        historyEvent2008: "Company founded with producing oil level sensor",
+        historyDescription2008: "The Foundation Go-World was established with a focus on precision-engineered oil level sensors, laying the groundwork for our expertise in automotive sensing solutions.",
+        historyEvent2010: "Expansion into new markets",
+        historyDescription2010: "Go-World expanded its product line and entered new automotive markets, establishing partnerships with major manufacturers.",
+        historyEvent2012: "Advanced manufacturing capabilities",
+        historyDescription2012: "Introduction of advanced manufacturing processes and quality control systems to ensure consistent product excellence.",
+        historyEvent2014: "International recognition",
+        historyDescription2014: "Achieved international quality certifications and recognition as a trusted supplier in the automotive industry.",
+        historyEvent2015: "Research and development focus",
+        historyDescription2015: "Established dedicated R&D department to drive innovation in automotive sensing technologies.",
+        historyEvent2016: "Product diversification",
+        historyDescription2016: "Expanded product portfolio to include MAP sensors, DPF sensors, and other advanced automotive components.",
+        historyEvent2018: "Global market presence",
+        historyDescription2018: "Established global distribution network and partnerships, serving customers worldwide with reliable automotive solutions.",
+        historyEvent2025: "Future vision and innovation",
+        historyDescription2025: "Continuing to lead in automotive sensing technology with next-generation products and sustainable manufacturing practices."
     },
     zh: {
 
@@ -364,6 +392,34 @@ const translations = {
         addressLabel: "地址: ",
         fullAddress: "中国福建省宁德市福安市<br>甘棠镇上塘工业区 355009",
         contactUsTitle: "联系我们",
+
+        // Profile page
+        aboutGoWorldTitle: "关于沃德汽车配件",
+        companyTagline: "创新. 精密. 可靠.",
+        companyDescriptionFull: "宁德沃德汽车配件有限公司成立于2008年，是一家领先的高性能排放控制系统和发动机管理解决方案的全球制造商，总部位于中国福建省福安市。专业从事精密工程组件——包括油位传感器、高度液位传感器、转向角传感器、预热塞控制器、MAP传感器、DPF传感器和EGT传感器——我们为汽车后市场提供OE同等质量的产品。我们公司秉承\"学习新知识，面向世界\"的原则。展望未来，我们将不断创新，不懈努力提高产品质量和服务标准。",
+
+        // Engineering Excellence section
+        engineeringExcellence: "工程卓越",
+        engineeringDescription: "我们专门的研发团队拥有43名工程师，我们设计和测试每个产品以满足OEM规格和国际标准。通过半自动化装配线、先进的测试流程和符合OES标准的验证，我们确保每个组件都具有无与伦比的可靠性、效率和性能。",
+
+        // Corporate History section
+        corporateHistoryTitle: "公司历史",
+        historyEvent2008: "公司成立，专注生产油位传感器",
+        historyDescription2008: "沃德公司成立，专注于精密工程油位传感器，为我们在汽车传感解决方案领域的专业技术奠定了基础。",
+        historyEvent2010: "拓展新市场",
+        historyDescription2010: "沃德拓展产品线并进入新的汽车市场，与主要制造商建立合作伙伴关系。",
+        historyEvent2012: "先进制造能力",
+        historyDescription2012: "引入先进的制造工艺和质量控制系统，确保产品的卓越品质。",
+        historyEvent2014: "国际认可",
+        historyDescription2014: "获得国际质量认证，并被认可为汽车行业值得信赖的供应商。",
+        historyEvent2015: "专注研发",
+        historyDescription2015: "建立专门的研发部门，推动汽车传感技术的创新发展。",
+        historyEvent2016: "产品多元化",
+        historyDescription2016: "扩展产品组合，包括MAP传感器、DPF传感器和其他先进汽车组件。",
+        historyEvent2018: "全球市场布局",
+        historyDescription2018: "建立全球分销网络和合作伙伴关系，为全球客户提供可靠的汽车解决方案。",
+        historyEvent2025: "未来愿景与创新",
+        historyDescription2025: "继续在汽车传感技术领域领先，推出下一代产品和可持续制造实践。",
 
         // Contact page
         contactPageTitle: "联系我们",

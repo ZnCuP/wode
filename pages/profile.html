@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,105 +10,91 @@
     <link rel="stylesheet" href="../styles/css/language.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <!-- Language Toggle -->
-    <button class="language-toggle" id="langToggle">
-        <span id="currentLang">EN</span>
-    </button>
     <!-- 公共头部容器 -->
     <div id="header-container"></div>
 
-    <!-- Hero Section -->
-    <section class="hero hero-profile">
-        <div class="hero-content">
-            <h1 data-translate="goWorldProfileTitle">Go-World Profile</h1>
-        </div>
-    </section>
+    <main>
+        <!-- Top Image Section -->
+        <section class="page-top-image">
+            <img src="../assets/top.png" alt="Top Banner" class="top-banner-img">
+        </section>
 
-    <!-- About Section -->
-    <section class="about-section">
-        <div class="container">
-            <h2 data-translate="aboutGoWorld">About Go-World Auto Spare Parts</h2>
-            <p class="company-tagline"><em data-translate="innovation">Innovation. Precision. Reliability.</em></p>
-            
-            <div class="company-description">
-                <p>Ningde Go-World Auto Spare Parts Co., Ltd. was founded in 2008, it is a leading global manufacturer of high-performance emission control systems and engine management solutions, headquartered in Fu'an City, Fujian Province, China. Specializing in precision-engineered components—including Oil Level Sensors,Height Level Sensor,Steering Angle Sensors,Glow Plug Controllers,MAP sensors, DPF sensors and EGT sensors—we deliver OE-equivalent quality to the automotive aftermarket. Our company adheres to the principle of "learning the new while facing the world." Looking ahead, we will continuously innovate and make unremitting efforts to enhance our product quality and service standards.</p>
-            </div>
+        <!-- Profile Content Section -->
+        <section class="profile-content">
+            <div class="container">
+                <div class="profile-text-content">
+                    <h1 class="page-title" data-translate="aboutGoWorldTitle">About Go-World Auto Spare Parts</h1>
 
-            <div class="engineering-excellence">
-                <div class="excellence-content">
-                    <div class="excellence-text">
-                        <h3>Engineering Excellence</h3>
-                        <p>Our dedicated R&D team with 43 engineers,we designs and tests every product to meet OEM specifications and international standards. With semi-automated assembly lines, advanced testing processes, and OES-compliant validation, we ensure unmatched reliability, efficiency, and performance in every component.</p>
+                    <h2 class="company-tagline" data-translate="companyTagline">Innovation. Precision. Reliability.</h2>
+
+                    <div class="company-description">
+                        <p data-translate="companyDescriptionFull">Ningde Go-World Auto Spare Parts Co., Ltd. was
+                            founded in 2008, it is a leading global manufacturer of high-performance emission control
+                            systems and engine management solutions, headquartered in Fu'an City, Fujian Province,
+                            China. Specializing in precision-engineered components—including Oil Level Sensors,Height
+                            Level Sensor,Steering Angle Sensors,Glow Plug Controllers,MAP sensors, DPF sensors and EGT
+                            sensors—we deliver OE-equivalent quality to the automotive aftermarket. Our company adheres
+                            to the principle of "learning the new while facing the world." Looking ahead, we will
+                            continuously innovate and make unremitting efforts to enhance our product quality and
+                            service standards.</p>
                     </div>
-                    <div class="excellence-video">
-                        <div class="video-placeholder">
-                            <div class="play-button">▶</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Engineering Excellence Section -->
+        <section class="engineering-excellence">
+            <div class="container">
+                <div class="engineering-content-grid">
+                    <h2 class="engineering-title" data-translate="engineeringExcellence">Engineering Excellence</h2>
+                    <p class="engineering-description" data-translate="engineeringDescription">Through continuous innovation and advanced manufacturing processes, we maintain the highest standards of quality and precision in every component we produce. Our state-of-the-art facilities and experienced engineering team ensure that each product meets or exceeds industry specifications.</p>
+                    <div class="engineering-video">
+                        <video controls poster="../assets/company.png">
+                            <source src="../assets/videos/engineering.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Corporate History Section -->
+        <section class="corporate-history">
+            <div class="container">
+                <h2 class="history-title" data-translate="corporateHistoryTitle">Corporate History</h2>
+                <div class="history-content">
+                    <!-- 左侧年份列表 -->
+                    <div class="history-years">
+                        <div class="year-item active" data-year="2008">2008</div>
+                        <div class="year-item" data-year="2010">2010</div>
+                        <div class="year-item" data-year="2012">2012</div>
+                        <div class="year-item" data-year="2014">2014</div>
+                        <div class="year-item" data-year="2015">2015</div>
+                        <div class="year-item" data-year="2016">2016</div>
+                        <div class="year-item" data-year="2018">2018</div>
+                        <div class="year-item" data-year="2025">2025</div>
+                    </div>
+                    
+                    <!-- 右侧内容区域 -->
+                    <div class="history-details">
+                        <h3 class="history-event" data-translate="historyEvent2008">Company founded with producing oil level sensor</h3>
+                        <div class="history-image">
+                            <img src="../assets/temp.png" alt="Company History Image">
                         </div>
+                        <p class="history-description" data-translate="historyDescription2008">The Foundation Go-World was established with a focus on precision-engineered oil level sensors, laying the groundwork for our expertise in automotive sensing solutions.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Corporate History Section -->
-    <section class="corporate-history">
-        <div class="container">
-            <h2>Corporate History</h2>
-            <div class="timeline-container">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-year highlight">2008</div>
-                        <div class="timeline-content"></div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2010</div>
-                        <div class="timeline-content highlight-content">
-                            <h3>Company founded with producing oil level sensor</h3>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2012</div>
-                        <div class="timeline-content"></div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2014</div>
-                        <div class="timeline-content"></div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2015</div>
-                        <div class="timeline-content"></div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2016</div>
-                        <div class="timeline-content"></div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2018</div>
-                        <div class="timeline-content"></div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2025</div>
-                        <div class="timeline-content"></div>
-                    </div>
-                </div>
-                <div class="timeline-image">
-                    <img src="assets/oil-level-sensor.jpg" alt="Oil Level Sensor">
-                </div>
-            </div>
-            
-            <div class="foundation-story">
-                <h3>The Foundation</h3>
-                <p>Go-World was established with a focus on precision-engineered oil level sensors, laying the groundwork for our expertise in automotive sensing solutions.</p>
-            </div>
-        </div>
-    </section>
+        <!-- 公共底部容器 -->
+        <div id="footer-container"></div>
 
-    <!-- 公共底部容器 -->
-    <div id="footer-container"></div>
-
-    <!-- 加载公共组件的脚本 -->
-    <script src="../scripts/js/common.js"></script>
-    <script src="../scripts/js/language.js"></script>
+        <!-- 加载公共组件的脚本 -->
+        <script src="../scripts/js/common.js"></script>
+        <script src="../scripts/js/language.js"></script>
 </body>
+
 </html>

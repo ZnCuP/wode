@@ -236,5 +236,109 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentLang = localStorage.getItem('language') || 'en';
             switchLanguage(currentLang);
         }
+        
+        // 初始化Corporate History年份切换功能
+        initHistoryYearSwitcher();
+        
+        // 增强下拉菜单用户体验
+        enhanceDropdownMenus();
     }, 100); // 稍微延迟以确保组件已加载
 });
+
+// Corporate History年份切换功能
+function initHistoryYearSwitcher() {
+    const yearItems = document.querySelectorAll('.year-item');
+    
+    yearItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // 移除所有active类
+            yearItems.forEach(year => year.classList.remove('active'));
+            // 给当前点击的年份添加active类
+            this.classList.add('active');
+            
+            // 这里可以根据不同年份显示不同内容
+            const selectedYear = this.getAttribute('data-year');
+            updateHistoryContent(selectedYear);
+        });
+    });
+}
+
+// 根据选中年份更新右侧内容
+function updateHistoryContent(year) {
+    const historyEvent = document.querySelector('.history-event');
+    const historyDescription = document.querySelector('.history-description');
+    
+    if (historyEvent && historyDescription) {
+        // 更新data-translate属性
+        historyEvent.setAttribute('data-translate', `historyEvent${year}`);
+        historyDescription.setAttribute('data-translate', `historyDescription${year}`);
+        
+        // 立即应用当前语言的翻译
+        if (typeof switchLanguage === 'function') {
+            const currentLang = localStorage.getItem('language') || 'en';
+            // 获取翻译文本
+            if (typeof translations !== 'undefined' && translations[currentLang]) {
+                const eventKey = `historyEvent${year}`;
+                const descKey = `historyDescription${year}`;
+                
+                if (translations[currentLang][eventKey]) {
+                    historyEvent.textContent = translations[currentLang][eventKey];
+                }
+                if (translations[currentLang][descKey]) {
+                    historyDescription.textContent = translations[currentLang][descKey];
+                }
+            }
+        }
+    }
+}
+
+// 改善下拉菜单用户体验
+function enhanceDropdownMenus() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    let hideTimeout;
+    
+    dropdowns.forEach(dropdown => {
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        if (menu) {
+            // 鼠标进入dropdown时显示菜单
+            dropdown.addEventListener('mouseenter', function() {
+                clearTimeout(hideTimeout);
+                menu.style.display = 'block';
+                // 小延迟后添加opacity和transform
+                setTimeout(() => {
+                    menu.style.opacity = '1';
+                    menu.style.transform = 'translateX(-50%) translateY(0) scale(1)';
+                }, 10);
+            });
+            
+            // 鼠标离开dropdown时延迟隐藏菜单
+            dropdown.addEventListener('mouseleave', function() {
+                hideTimeout = setTimeout(() => {
+                    menu.style.opacity = '0';
+                    menu.style.transform = 'translateX(-50%) translateY(-10px) scale(0.95)';
+                    // 动画完成后隐藏
+                    setTimeout(() => {
+                        menu.style.display = 'none';
+                    }, 350);
+                }, 200); // 200ms延迟
+            });
+            
+            // 鼠标进入菜单时取消隐藏
+            menu.addEventListener('mouseenter', function() {
+                clearTimeout(hideTimeout);
+            });
+            
+            // 鼠标离开菜单时延迟隐藏
+            menu.addEventListener('mouseleave', function() {
+                hideTimeout = setTimeout(() => {
+                    menu.style.opacity = '0';
+                    menu.style.transform = 'translateX(-50%) translateY(-10px) scale(0.95)';
+                    setTimeout(() => {
+                        menu.style.display = 'none';
+                    }, 350);
+                }, 200);
+            });
+        }
+    });
+}
