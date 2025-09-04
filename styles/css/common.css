@@ -2924,7 +2924,7 @@ footer {
 }
 
 /* 蓝色区域 - 占2.5份 */
-.contact-info-section {
+.contact-response-info-section {
     background-color: rgb(93, 130, 177);
     height: 71.43%; /* 2.5/3.5 * 100% */
     display: flex;
