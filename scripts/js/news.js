@@ -15,44 +15,31 @@ class NewsManager {
 
     async loadArticles() {
         try {
-            // 模拟读取文件列表 - 在实际项目中需要后端API支持
-            const articleFiles = [
-                'How Headlight Level Sensors Enhance Road Safety.md',
-                'Advanced Technology in Action- The Functionality of Headlight Level Sensors.md',
-                'How to clean your Ford MAP sensor.md',
-                'How to install a headlight level sensor in your car.md',
-                'Where are headlight level sensors located in different car brands.md',
-                'Where to Purchase Volkswagen Oil Level Sensors for Your Business.md'
-            ];
-
-            for (const fileName of articleFiles) {
-                try {
-                    const response = await fetch(`../assets/file/docs/${fileName}`);
-                    if (response.ok) {
-                        const content = await response.text();
-                        const title = fileName.replace('.md', '');
-                        const imageName = fileName.replace('.md', '.png');
-                        
-                        // 获取文件修改时间（在实际项目中从后端获取）
-                        const date = this.getDateFromFileName(fileName);
-                        
-                        this.articles.push({
-                            title: title,
-                            content: content,
-                            date: date,
-                            image: `../assets/file/pics/${imageName}`,
-                            fileName: fileName
-                        });
-                    }
-                } catch (error) {
-                    console.warn(`Failed to load article: ${fileName}`, error);
-                }
+            // 从API获取新闻数据
+            const response = await fetch('http://localhost:8001/api/news');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
             
+            const newsData = await response.json();
+            
+            // 转换API数据格式为前端需要的格式
+            this.articles = newsData.map(news => ({
+                id: news.id,
+                title: this.getCurrentLanguage() === 'zh' ? (news.title_zh || news.title) : news.title,
+                content: this.getCurrentLanguage() === 'zh' ? (news.content_zh || news.content) : news.content,
+                summary: this.getCurrentLanguage() === 'zh' ? (news.summary_zh || news.summary) : news.summary,
+                date: news.publish_date || news.created_at,
+                image: news.image_url || '../assets/file/pics/default-news.png',
+                category: news.category
+            }));
+
             // 按日期排序（最新的在前）
             this.articles.sort((a, b) => new Date(b.date) - new Date(a.date));
         } catch (error) {
             console.error('Failed to load articles:', error);
+            // 显示错误信息给用户
+            this.showErrorMessage('Failed to load news articles. Please try again later.');
         }
     }
 
@@ -153,6 +140,27 @@ class NewsManager {
         const loadMoreBtn = document.getElementById('loadMoreBtn');
         if (loadMoreBtn) {
             loadMoreBtn.addEventListener('click', () => this.loadMore());
+        }
+    }
+
+    getCurrentLanguage() {
+        // 获取当前语言设置
+        return localStorage.getItem('language') || 'en';
+    }
+
+    showErrorMessage(message) {
+        // 显示错误信息
+        const newsGrid = document.getElementById('newsGrid');
+        if (newsGrid) {
+            newsGrid.innerHTML = `
+                <div class="error-message" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #e74c3c;">
+                    <h3>Error</h3>
+                    <p>${message}</p>
+                    <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                        Retry
+                    </button>
+                </div>
+            `;
         }
     }
 }

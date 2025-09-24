@@ -26,50 +26,9 @@
                 
                 <!-- 折叠问答区域 -->
                 <div class="faq-container">
-                    <!-- 问题1：默认打开 -->
-                    <div class="faq-item">
-                        <button class="faq-question active" data-translate="question1">
-                            Is it better to choose original parts or non-original parts to replace a part? The original one is too expensive?
-                        </button>
-                        <div class="faq-answer active">
-                            <p data-translate="answer1p1">Regarding the choice between original parts and non-original parts, it really needs to be considered according to the actual situation. Genuine parts are usually produced or authorized by the car manufacturer, the quality is more guaranteed, and the match with the vehicle is higher, but the price is relatively high. Non-genuine accessories are produced by third-party manufacturers, which are more affordable but of varying quality.</p>
-                            
-                            <p data-translate="answer1p2">For key safety components, such as braking system, steering system, seat belts, etc., it is strongly recommended to choose the original parts. Because these parts directly affect the safety of driving, the original parts have been rigorously tested and can provide better safety protection.</p>
-                            
-                            <p data-translate="answer1p3">For some non-critical parts, such as filter elements, light bulbs, windshield wipers, etc., you can choose cost-effective non-original parts, but be sure to choose the parts produced by regular manufacturers and meet the quality standards. You can refer to some well-known accessory brands, or consult our professional sales team, we will recommend the right accessories according to your model and needs.</p>
-                            
-                            <p data-translate="answer1p4">You can also consider our Ward brand accessories. We select high-quality suppliers to provide reliable quality and cost-effective parts, and provide one-year warranty service, you can rest assured.</p>
-                        </div>
-                    </div>
-
-                    <!-- 问题2 -->
-                    <div class="faq-item">
-                        <button class="faq-question" data-translate="question2">
-                            Problems occur not long after installing the accessory, with strange noise/loose/not working?
-                        </button>
-                        <div class="faq-answer">
-                            <p data-translate="answer2p1">In order to ensure the proper use of the accessories, proper installation is crucial. All the accessories we sell have gone through strict quality testing. In this case, it may be caused by improper installation.</p>
-                            
-                            <p data-translate="answer2p2">If you choose to install it by yourself or find a non-designated repair store to install it, please make sure that the installer has the appropriate technical qualifications and follow the installation instructions strictly.</p>
-                            
-                            <p data-translate="answer2p3">You can provide the installation vouchers and parts information at that time, we will try our best to assist you to solve the problem. If it is confirmed that it is a quality problem of our parts, we will replace or refund you according to our after-sales policy.</p>
-                        </div>
-                    </div>
-
-                    <!-- 问题3 -->
-                    <div class="faq-item">
-                        <button class="faq-question" data-translate="question3">
-                            Purchased accessories found that they do not work when installed, and seem to be mismatched with the model?
-                        </button>
-                        <div class="faq-answer">
-                            <p data-translate="answer3p1">To avoid the situation that the accessories do not match with your vehicle, we need to know the exact information of your model, year and engine model before purchase. My suggestion:</p>
-                            
-                            <p data-translate="answer3p2">Please provide detailed information about your vehicle, including the model, year, VIN code (vehicle identification code), etc.. We will accurately match the parts for you based on this information.</p>
-                            
-                            <p data-translate="answer3p3">If you have already purchased the parts, please provide the model number and proof of purchase. We will verify the accessory information, and if there is indeed a mismatch, we can arrange a return or exchange for you. All of our products enjoy one year warranty.</p>
-                            
-                            <p data-translate="answer3p4">We suggest you consult our sales team before purchase, they will provide professional installation guidance.</p>
-                        </div>
+                    <!-- FAQ内容将通过JavaScript动态加载 -->
+                    <div class="loading-message" style="text-align: center; padding: 2rem;">
+                        <p>Loading FAQs...</p>
                     </div>
                 </div>
             </div>
@@ -82,30 +41,6 @@
     <!-- 加载公共组件的脚本 -->
     <script src="../scripts/js/common.js"></script>
     <script src="../scripts/js/language.js"></script>
-
-    <script>
-        // FAQ折叠功能
-        document.addEventListener('DOMContentLoaded', function() {
-            const faqQuestions = document.querySelectorAll('.faq-question');
-            
-            faqQuestions.forEach(question => {
-                question.addEventListener('click', function() {
-                    const isActive = this.classList.contains('active');
-                    
-                    // 关闭所有其他FAQ
-                    faqQuestions.forEach(q => {
-                        q.classList.remove('active');
-                        q.nextElementSibling.classList.remove('active');
-                    });
-                    
-                    // 如果当前不是激活状态，则激活它
-                    if (!isActive) {
-                        this.classList.add('active');
-                        this.nextElementSibling.classList.add('active');
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="../scripts/js/faq.js"></script>
 </body>
 </html>
