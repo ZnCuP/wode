@@ -9,10 +9,14 @@ class FAQManager {
         await this.loadFAQs();
         this.renderFAQs();
         this.bindEvents();
+        this.bindLanguageEvents();
     }
 
     async loadFAQs() {
         try {
+            const currentLang = this.getCurrentLanguage();
+            console.log('Loading FAQs with language:', currentLang);
+            
             // 从API获取FAQ数据
             const response = await fetch('http://localhost:8001/api/faqs');
             if (!response.ok) {
@@ -20,16 +24,19 @@ class FAQManager {
             }
             
             const faqData = await response.json();
+            console.log('Raw FAQ data:', faqData);
             
             // 转换API数据格式为前端需要的格式
             this.faqs = faqData.map(faq => ({
                 id: faq.id,
-                question: this.getCurrentLanguage() === 'zh' ? (faq.question_zh || faq.question) : faq.question,
-                answer: this.getCurrentLanguage() === 'zh' ? (faq.answer_zh || faq.answer) : faq.answer,
+                question: currentLang === 'zh' ? (faq.question_zh || faq.question) : faq.question,
+                answer: currentLang === 'zh' ? (faq.answer_zh || faq.answer) : faq.answer,
                 category: faq.category,
                 sort_order: faq.sort_order
             }));
 
+            console.log('Processed FAQs:', this.faqs);
+            
             // 按排序顺序排序
             this.faqs.sort((a, b) => a.sort_order - b.sort_order);
         } catch (error) {
@@ -47,17 +54,17 @@ class FAQManager {
             return;
         }
 
-        const faqHTML = this.faqs.map(faq => this.createFAQItem(faq)).join('');
+        const faqHTML = this.faqs.map((faq, index) => this.createFAQItem(faq, index === 0)).join('');
         faqContainer.innerHTML = faqHTML;
     }
 
-    createFAQItem(faq) {
+    createFAQItem(faq, isExpanded = false) {
         // 将答案按段落分割
         const answerParagraphs = faq.answer.split('\n\n').filter(p => p.trim());
         const answerHTML = answerParagraphs.map(paragraph => `<p>${paragraph.trim()}</p>`).join('');
 
         return `
-            <div class="faq-item">
+            <div class="faq-item${isExpanded ? ' active' : ''}">
                 <button class="faq-question" data-faq-id="${faq.id}">
                     ${faq.question}
                 </button>
@@ -90,6 +97,17 @@ class FAQManager {
         });
     }
 
+    bindLanguageEvents() {
+        // 监听语言切换事件
+        document.addEventListener('languageChanged', async (event) => {
+            console.log('FAQ: Language changed event received!', event.detail);
+            // 重新加载和渲染FAQ内容
+            await this.loadFAQs();
+            this.renderFAQs();
+        });
+        console.log('FAQ: Language event listener bound');
+    }
+
     getCurrentLanguage() {
         // 获取当前语言设置
         return localStorage.getItem('language') || 'en';
@@ -114,5 +132,9 @@ class FAQManager {
 
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', () => {
-    new FAQManager();
+    // 延迟初始化，确保header组件已加载
+    setTimeout(() => {
+        console.log('FAQ: Initializing FAQManager...');
+        new FAQManager();
+    }, 200);
 });
