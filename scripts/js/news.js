@@ -11,6 +11,7 @@ class NewsManager {
         await this.loadArticles();
         this.renderArticles();
         this.bindEvents();
+        this.bindLanguageEvents();
     }
 
     async loadArticles() {
@@ -30,8 +31,12 @@ class NewsManager {
                 content: this.getCurrentLanguage() === 'zh' ? (news.content_zh || news.content) : news.content,
                 summary: this.getCurrentLanguage() === 'zh' ? (news.summary_zh || news.summary) : news.summary,
                 date: news.publish_date || news.created_at,
-                image: news.image_url || '../assets/file/pics/default-news.png',
-                category: news.category
+                image: news.cover_image || '../assets/file/pics/default-news.png', // 使用新的cover_image字段
+                category: news.category,
+                author: news.author,
+                tags: news.tags,
+                view_count: news.view_count,
+                is_featured: news.is_featured
             }));
 
             // 按日期排序（最新的在前）
@@ -141,6 +146,17 @@ class NewsManager {
         if (loadMoreBtn) {
             loadMoreBtn.addEventListener('click', () => this.loadMore());
         }
+    }
+
+    bindLanguageEvents() {
+        // 监听语言切换事件
+        document.addEventListener('languageChanged', (event) => {
+            console.log('Language changed to:', event.detail.language);
+            // 重新加载和渲染文章
+            this.loadArticles().then(() => {
+                this.renderArticles();
+            });
+        });
     }
 
     getCurrentLanguage() {

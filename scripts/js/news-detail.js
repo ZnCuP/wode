@@ -30,41 +30,33 @@ class NewsDetailManager {
 
     async loadAllArticles() {
         try {
-            const articleFiles = [
-                'How Headlight Level Sensors Enhance Road Safety?.md',
-                'Advanced Technology in Action- The Functionality of Headlight Level Sensors.md',
-                'How to clean your Ford MAP sensor?.md',
-                'How to install a headlight level sensor in your car?.md',
-                'Where are headlight level sensors located in different car brands?.md',
-                'Where to Purchase Volkswagen Oil Level Sensors for Your Business.md'
-            ];
-
-            for (const fileName of articleFiles) {
-                if (fileName !== this.currentArticle.fileName) {
-                    try {
-                        const response = await fetch(`../assets/file/docs/${fileName}`);
-                        if (response.ok) {
-                            const content = await response.text();
-                            const title = fileName.replace('.md', '');
-                            const imageName = fileName.replace('.md', '.png');
-                            const date = this.getDateFromFileName(fileName);
-                            
-                            this.allArticles.push({
-                                title: title,
-                                content: content,
-                                date: date,
-                                image: `../assets/file/pics/${imageName}`,
-                                fileName: fileName
-                            });
-                        }
-                    } catch (error) {
-                        console.warn(`Failed to load article: ${fileName}`, error);
-                    }
-                }
+            // 从API获取所有新闻数据
+            const response = await fetch('http://localhost:8001/api/news');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
             
-            // 随机排序
-            this.allArticles.sort(() => Math.random() - 0.5);
+            const newsData = await response.json();
+            
+            // 转换API数据格式并过滤掉当前文章
+            this.allArticles = newsData
+                .filter(news => news.id !== this.currentArticle.id)
+                .map(news => ({
+                    id: news.id,
+                    title: this.getCurrentLanguage() === 'zh' ? (news.title_zh || news.title) : news.title,
+                    content: this.getCurrentLanguage() === 'zh' ? (news.content_zh || news.content) : news.content,
+                    summary: this.getCurrentLanguage() === 'zh' ? (news.summary_zh || news.summary) : news.summary,
+                    date: news.publish_date || news.created_at,
+                    image: news.cover_image || '../assets/file/pics/default-news.png',
+                    category: news.category,
+                    author: news.author,
+                    tags: news.tags,
+                    view_count: news.view_count,
+                    is_featured: news.is_featured
+                }));
+            
+            // 按日期排序（最新的在前）
+            this.allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
         } catch (error) {
             console.error('Failed to load articles:', error);
         }
@@ -187,6 +179,11 @@ class NewsDetailManager {
         const date = new Date(dateString);
         const options = { year: 'numeric', month: 'short', day: 'numeric' };
         return date.toLocaleDateString('en-US', options);
+    }
+
+    getCurrentLanguage() {
+        // 获取当前语言设置
+        return localStorage.getItem('language') || 'en';
     }
 }
 

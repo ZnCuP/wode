@@ -46,16 +46,24 @@ CREATE TABLE news (
     category_id INTEGER REFERENCES news_categories(id),
     title VARCHAR(300) NOT NULL,
     title_zh VARCHAR(300),
-    content TEXT NOT NULL,
-    content_zh TEXT,
-    summary VARCHAR(500),
-    summary_zh VARCHAR(500),
-    image_url VARCHAR(500),
-    author VARCHAR(100),
-    is_published BOOLEAN DEFAULT false,
-    publish_date TIMESTAMP,
+    content TEXT NOT NULL, -- 富文本内容
+    content_zh TEXT, -- 中文富文本内容
+    summary VARCHAR(800), -- 摘要，用于列表页显示
+    summary_zh VARCHAR(800),
+    cover_image VARCHAR(500) NOT NULL, -- 封面图（必需字段）
+    author VARCHAR(100) DEFAULT 'Go-World',
+    tags VARCHAR(500), -- 标签，逗号分隔
+    view_count INTEGER DEFAULT 0, -- 浏览次数
+    is_featured BOOLEAN DEFAULT false, -- 是否为推荐文章
+    is_published BOOLEAN DEFAULT true,
+    publish_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 发布日期
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    -- 索引
+    INDEX idx_news_publish_date (publish_date),
+    INDEX idx_news_category (category_id),
+    INDEX idx_news_published (is_published)
 );
 
 -- FAQ分类表

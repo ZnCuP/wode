@@ -59,14 +59,17 @@ class News(Base):
     category_id = Column(Integer, ForeignKey("news_categories.id"))
     title = Column(String(300), nullable=False)
     title_zh = Column(String(300))
-    content = Column(Text, nullable=False)
-    content_zh = Column(Text)
-    summary = Column(String(500))
-    summary_zh = Column(String(500))
-    image_url = Column(String(500))
-    author = Column(String(100))
-    is_published = Column(Boolean, default=False)
-    publish_date = Column(DateTime)
+    content = Column(Text, nullable=False)  # 富文本内容
+    content_zh = Column(Text)  # 中文富文本内容
+    summary = Column(String(800))  # 摘要，用于列表页显示
+    summary_zh = Column(String(800))
+    cover_image = Column(String(500), nullable=False)  # 封面图（必需字段）
+    author = Column(String(100), default='Go-World')
+    tags = Column(String(500))  # 标签，逗号分隔
+    view_count = Column(Integer, default=0)  # 浏览次数
+    is_featured = Column(Boolean, default=False)  # 是否为推荐文章
+    is_published = Column(Boolean, default=True)
+    publish_date = Column(DateTime, server_default=func.now())  # 发布日期
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
     

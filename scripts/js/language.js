@@ -208,7 +208,11 @@ const translations = {
         oilLevelSensorTitle: "OIL LEVEL SENSOR",
         oilLevelSensorDescription: "In this category, you will find a comprehensive collection of video tutorials on Oil Level Sensors. These videos cover everything from installation and troubleshooting to maintenance, helping you better understand and manage your vehicle's oil level sensor system. Whether you're a DIY enthusiast or an automotive professional, these videos will provide valuable information and practical tips to ensure your engine's performance remains at its best.",
         video3Title: "1J0907660B Oil Level Sensor Product Showcase",
-        video4Title: "0011530532 Oil Level Sensor Product Showcase"
+        video4Title: "0011530532 Oil Level Sensor Product Showcase",
+        
+        // News page
+        newsMainTitle: "NEWS",
+        loadMore: "LOAD MORE"
     },
     zh: {
 
@@ -443,6 +447,10 @@ const translations = {
         video3Title: "1J0907660B 油位传感器产品展示",
         video4Title: "0011530532 油位传感器产品展示",
 
+        // News page
+        newsMainTitle: "新闻资讯",
+        loadMore: "加载更多",
+
         // Contact page
         contactPageTitle: "联系我们",
         certificationsTitle: "我们的认证",
@@ -473,6 +481,9 @@ function initLanguageSwitcher() {
     console.log('Initializing language switcher...');
     const langToggle = document.getElementById('langToggle');
     console.log('Language toggle element found:', langToggle);
+    
+    // 初始化时应用当前语言
+    switchLanguage(currentLanguage);
     
     if (langToggle) {
         // 设置初始语言状态
@@ -531,6 +542,12 @@ function switchLanguage(lang) {
             }
         }
     });
+    
+    // 触发语言切换事件，让其他组件可以监听
+    const languageChangeEvent = new CustomEvent('languageChanged', {
+        detail: { language: lang }
+    });
+    document.dispatchEvent(languageChangeEvent);
 }
 
 // 页面加载完成后初始化

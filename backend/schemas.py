@@ -60,19 +60,22 @@ class NewsCategoryResponse(NewsCategoryBase):
 class NewsBase(BaseModel):
     title: str
     title_zh: Optional[str] = None
-    content: str
-    content_zh: Optional[str] = None
-    summary: Optional[str] = None
+    content: str  # 富文本内容
+    content_zh: Optional[str] = None  # 中文富文本内容
+    summary: Optional[str] = None  # 摘要，用于列表页显示
     summary_zh: Optional[str] = None
-    image_url: Optional[str] = None
-    author: Optional[str] = None
-    is_published: bool = False
+    cover_image: Optional[str] = None  # 封面图
+    author: Optional[str] = "Go-World"
+    tags: Optional[str] = None  # 标签，逗号分隔
+    is_featured: bool = False  # 是否为推荐文章
+    is_published: bool = True
 
 class NewsResponse(NewsBase):
     id: int
     category_id: Optional[int] = None
     category: Optional[NewsCategoryResponse] = None
-    publish_date: Optional[datetime] = None
+    view_count: int = 0  # 浏览次数
+    publish_date: Optional[datetime] = None  # 发布日期
     created_at: datetime
     updated_at: datetime
     
