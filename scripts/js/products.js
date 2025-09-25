@@ -2,8 +2,8 @@
  * 产品页面动态数据加载
  */
 
-// API基础URL
-const API_BASE_URL = 'http://localhost:8001/api';
+// API基础URL - 从config.js获取
+// 注意：确保config.js已经在此文件之前加载
 
 // 当前语言
 let productsCurrentLanguage = 'en';
@@ -13,7 +13,7 @@ let productsCurrentLanguage = 'en';
  */
 async function fetchProducts() {
     try {
-        const response = await fetch(`${API_BASE_URL}/products`);
+        const response = await fetch(`${window.API_BASE_URL}/products`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -30,7 +30,7 @@ async function fetchProducts() {
  */
 async function fetchCategories() {
     try {
-        const response = await fetch(`${API_BASE_URL}/categories`);
+        const response = await fetch(`${window.API_BASE_URL}/categories`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

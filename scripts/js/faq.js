@@ -18,7 +18,7 @@ class FAQManager {
             console.log('Loading FAQs with language:', currentLang);
             
             // 从API获取FAQ数据
-            const response = await fetch('http://localhost:8001/api/faqs');
+            const response = await fetch(`${window.API_BASE_URL}/faqs`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

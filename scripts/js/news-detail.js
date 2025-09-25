@@ -31,7 +31,7 @@ class NewsDetailManager {
     async loadAllArticles() {
         try {
             // 从API获取所有新闻数据
-            const response = await fetch('http://localhost:8001/api/news');
+            const response = await fetch(`${window.API_BASE_URL}/news`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
