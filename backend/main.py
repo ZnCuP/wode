@@ -117,7 +117,7 @@ async def get_categories(db: Session = Depends(get_db)):
 
 # ==================== 新闻相关 API ====================
 
-@app.get("/api/news", response_model=List[NewsResponse])
+@app.get("/api/news")
 async def get_news(
     category_id: Optional[int] = None,
     is_published: bool = True,
@@ -126,16 +126,75 @@ async def get_news(
     db: Session = Depends(get_db)
 ):
     """获取新闻列表"""
-    news = get_news_list(db, category_id=category_id, is_published=is_published, skip=skip, limit=limit)
-    return news
+    news_list = get_news_list(db, category_id=category_id, is_published=is_published, skip=skip, limit=limit)
+    
+    # 手动构建响应数据
+    result = []
+    for news in news_list:
+        news_data = {
+             "id": news.id,
+             "title": news.title,
+             "title_zh": news.title_zh,
+             "content": news.content,
+             "content_zh": news.content_zh,
+             "summary": news.summary,
+             "summary_zh": news.summary_zh,
+             "cover_image": news.cover_image,
+             "author": news.author,
+             "tags": news.tags,
+             "view_count": news.view_count,
+             "is_featured": news.is_featured,
+             "is_published": news.is_published,
+             "publish_date": news.publish_date.isoformat() if news.publish_date else None,
+             "category_id": news.category_id,
+             "category": {
+                  "id": news.category.id,
+                  "name": news.category.name,
+                  "name_zh": news.category.name_zh,
+                  "created_at": news.category.created_at.isoformat()
+              } if news.category else None,
+             "created_at": news.created_at.isoformat(),
+             "updated_at": news.updated_at.isoformat()
+         }
+        result.append(news_data)
+    
+    return result
 
-@app.get("/api/news/{news_id}", response_model=NewsResponse)
+@app.get("/api/news/{news_id}")
 async def get_news_detail(news_id: int, db: Session = Depends(get_db)):
     """获取新闻详情"""
     news = get_news_by_id(db, news_id)
     if not news:
         raise HTTPException(status_code=404, detail="News not found")
-    return news
+    
+    # 手动构建响应数据
+    news_data = {
+         "id": news.id,
+         "title": news.title,
+         "title_zh": news.title_zh,
+         "content": news.content,
+         "content_zh": news.content_zh,
+         "summary": news.summary,
+         "summary_zh": news.summary_zh,
+         "cover_image": news.cover_image,
+         "author": news.author,
+         "tags": news.tags,
+         "view_count": news.view_count,
+         "is_featured": news.is_featured,
+         "is_published": news.is_published,
+         "publish_date": news.publish_date.isoformat() if news.publish_date else None,
+         "category_id": news.category_id,
+         "category": {
+             "id": news.category.id,
+             "name": news.category.name,
+             "name_zh": news.category.name_zh,
+             "created_at": news.category.created_at.isoformat()
+         } if news.category else None,
+         "created_at": news.created_at.isoformat(),
+         "updated_at": news.updated_at.isoformat()
+     }
+    
+    return news_data
 
 # ==================== FAQ 相关 API ====================
 
