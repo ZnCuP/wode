@@ -5,8 +5,8 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import desc
 from typing import List, Optional
-from models import *
-from schemas import *
+from .models import *
+from .schemas import *
 
 # ==================== 产品相关操作 ====================
 

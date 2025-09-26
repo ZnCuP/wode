@@ -183,3 +183,5 @@ python3 server.py
 2. 修改公共组件后，所有页面会自动更新
 3. 确保JavaScript启用以正常加载公共组件
 4. 建议使用现代浏览器以获得最佳体验# wode
+
+启动方式：python3 start_app.py --host localhost --port 800

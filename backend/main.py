@@ -6,15 +6,16 @@ Go-World Auto Spare Parts Backend API
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from typing import List, Optional
 import os
 from dotenv import load_dotenv
 
-from database import get_db, engine
-from models import Base
-from schemas import *
-from crud import *
+from .database import get_db, engine
+from .models import Base
+from .schemas import *
+from .crud import *
 
 # 加载环境变量
 load_dotenv()
@@ -40,12 +41,45 @@ app.add_middleware(
 
 # 挂载静态文件
 import os
-assets_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "assets")
-app.mount("/assets", StaticFiles(directory=assets_path), name="assets")
+from pathlib import Path
 
-# 根路径
+# 获取项目根目录
+project_root = os.path.dirname(os.path.dirname(__file__))
+
+# 挂载各种静态资源
+assets_path = os.path.join(project_root, "assets")
+styles_path = os.path.join(project_root, "styles")
+scripts_path = os.path.join(project_root, "scripts")
+templates_path = os.path.join(project_root, "templates")
+
+app.mount("/assets", StaticFiles(directory=assets_path), name="assets")
+app.mount("/styles", StaticFiles(directory=styles_path), name="styles")
+app.mount("/scripts", StaticFiles(directory=scripts_path), name="scripts")
+app.mount("/templates", StaticFiles(directory=templates_path), name="templates")
+
+# 添加前端页面路由
+
 @app.get("/")
-async def root():
+async def serve_index():
+    """提供主页"""
+    return FileResponse(os.path.join(project_root, "index.html"))
+
+@app.get("/style.css")
+async def serve_style_css():
+    """提供主样式文件"""
+    return FileResponse(os.path.join(project_root, "style.css"))
+
+@app.get("/pages/{page_name}")
+async def serve_page(page_name: str):
+    """提供页面文件"""
+    page_path = os.path.join(project_root, "pages", page_name)
+    if os.path.exists(page_path) and page_name.endswith('.html'):
+        return FileResponse(page_path)
+    raise HTTPException(status_code=404, detail="Page not found")
+
+# API根路径信息
+@app.get("/api")
+async def api_root():
     return {"message": "Go-World Auto Spare Parts API", "version": "1.0.0"}
 
 # 健康检查

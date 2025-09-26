@@ -2,14 +2,14 @@
 // 根据当前域名自动判断环境并设置正确的API基础URL
 
 const API_CONFIG = {
-    // 生产环境配置
+    // 生产环境配置 - 使用相对路径，前后端同端口
     production: {
-        baseURL: 'http://8.134.236.143:8001/api',
+        baseURL: '/api',
         timeout: 10000
     },
-    // 开发环境配置
+    // 开发环境配置 - 使用相对路径，前后端同端口
     development: {
-        baseURL: 'http://localhost:8001/api',
+        baseURL: '/api',
         timeout: 10000
     }
 };
