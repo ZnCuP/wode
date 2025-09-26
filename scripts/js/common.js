@@ -110,11 +110,17 @@ function loadFallback(containerId) {
 function initMobileMenu() {
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
+    const glassOverlay = document.getElementById('glassOverlay');
     
     if (mobileMenuToggle && mobileMenu) {
         mobileMenuToggle.addEventListener('click', function() {
             this.classList.toggle('active');
             mobileMenu.classList.toggle('active');
+            
+            // 控制液态玻璃遮罩
+            if (glassOverlay) {
+                glassOverlay.classList.toggle('active');
+            }
             
             // 防止背景滚动
             if (mobileMenu.classList.contains('active')) {
@@ -124,12 +130,25 @@ function initMobileMenu() {
             }
         });
         
+        // 点击遮罩关闭菜单
+        if (glassOverlay) {
+            glassOverlay.addEventListener('click', function() {
+                mobileMenuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                glassOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+        
         // 点击菜单项后关闭菜单
         const menuItems = mobileMenu.querySelectorAll('a');
         menuItems.forEach(item => {
             item.addEventListener('click', () => {
                 mobileMenuToggle.classList.remove('active');
                 mobileMenu.classList.remove('active');
+                if (glassOverlay) {
+                    glassOverlay.classList.remove('active');
+                }
                 document.body.style.overflow = '';
             });
         });

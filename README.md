@@ -185,3 +185,15 @@ python3 server.py
 4. 建议使用现代浏览器以获得最佳体验# wode
 
 启动方式：pkill -f "start_app.py" && nohup python3 start_app.py --host 0.0.0.0 --port 8001 > app.log 2>&1 &
+
+# 查找占用8001端口的进程
+lsof -ti:8001 | xargs kill -9
+
+# 1. 杀死所有相关进程
+pkill -f "start_app.py"
+
+# 2. 确认端口已释放
+lsof -i:8001
+
+# 3. 重新启动
+nohup python3 start_app.py --host 0.0.0.0 --port 8001 > app.log 2>&1 &
