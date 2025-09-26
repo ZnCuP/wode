@@ -147,7 +147,32 @@ async def get_faqs(
 ):
     """获取FAQ列表"""
     faqs = get_faqs_list(db, category_id=category_id, is_active=is_active)
-    return faqs
+    
+    # 手动构建响应数据以避免序列化问题
+    result = []
+    for faq in faqs:
+        faq_dict = {
+            "id": faq.id,
+            "question": faq.question,
+            "question_zh": faq.question_zh,
+            "answer": faq.answer,
+            "answer_zh": faq.answer_zh,
+            "sort_order": faq.sort_order,
+            "is_active": faq.is_active,
+            "category_id": faq.category_id,
+            "category": {
+                "id": faq.category.id,
+                "name": faq.category.name,
+                "name_zh": faq.category.name_zh,
+                "sort_order": faq.category.sort_order,
+                "created_at": faq.category.created_at
+            } if faq.category else None,
+            "created_at": faq.created_at,
+            "updated_at": faq.updated_at
+        }
+        result.append(faq_dict)
+    
+    return result
 
 @app.get("/api/faq-categories", response_model=List[FAQCategoryResponse])
 async def get_faq_categories(db: Session = Depends(get_db)):
