@@ -89,7 +89,7 @@ async def health_check():
 
 # ==================== 产品相关 API ====================
 
-@app.get("/api/products", response_model=List[ProductResponse])
+@app.get("/api/products")
 async def get_products(
     category_id: Optional[int] = None,
     is_active: bool = True,
@@ -99,21 +99,100 @@ async def get_products(
 ):
     """获取产品列表"""
     products = get_products_list(db, category_id=category_id, is_active=is_active, skip=skip, limit=limit)
-    return products
+    
+    # 手动构造返回数据
+    products_data = []
+    for product in products:
+        product_data = {
+            "id": product.id,
+            "name": product.name,
+            "name_zh": product.name_zh,
+            "description": product.description,
+            "description_zh": product.description_zh,
+            "image_url": product.image_url,
+            "price": product.price,
+            "stock_quantity": product.stock_quantity,
+            "sku": product.sku,
+            "specifications": product.specifications,
+            "is_active": product.is_active,
+            "category_id": product.category_id,
+            "created_at": product.created_at.isoformat() if product.created_at else None,
+            "updated_at": product.updated_at.isoformat() if product.updated_at else None
+        }
+        
+        # 添加分类信息
+        if product.category:
+            product_data["category"] = {
+                "id": product.category.id,
+                "name": product.category.name,
+                "name_zh": product.category.name_zh,
+                "description": product.category.description,
+                "created_at": product.category.created_at.isoformat() if product.category.created_at else None
+            }
+        else:
+            product_data["category"] = None
+            
+        products_data.append(product_data)
+    
+    return products_data
 
-@app.get("/api/products/{product_id}", response_model=ProductResponse)
+@app.get("/api/products/{product_id}")
 async def get_product(product_id: int, db: Session = Depends(get_db)):
     """获取单个产品详情"""
     product = get_product_by_id(db, product_id)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
-    return product
+    
+    # 手动构造返回数据
+    product_data = {
+        "id": product.id,
+        "name": product.name,
+        "name_zh": product.name_zh,
+        "description": product.description,
+        "description_zh": product.description_zh,
+        "image_url": product.image_url,
+        "price": product.price,
+        "stock_quantity": product.stock_quantity,
+        "sku": product.sku,
+        "specifications": product.specifications,
+        "is_active": product.is_active,
+        "category_id": product.category_id,
+        "created_at": product.created_at.isoformat() if product.created_at else None,
+        "updated_at": product.updated_at.isoformat() if product.updated_at else None
+    }
+    
+    # 添加分类信息
+    if product.category:
+        product_data["category"] = {
+            "id": product.category.id,
+            "name": product.category.name,
+            "name_zh": product.category.name_zh,
+            "description": product.category.description,
+            "created_at": product.category.created_at.isoformat() if product.category.created_at else None
+        }
+    else:
+        product_data["category"] = None
+    
+    return product_data
 
-@app.get("/api/categories", response_model=List[CategoryResponse])
+@app.get("/api/categories")
 async def get_categories(db: Session = Depends(get_db)):
     """获取产品分类列表"""
     categories = get_categories_list(db)
-    return categories
+    
+    # 手动构造返回数据
+    categories_data = []
+    for category in categories:
+        category_data = {
+            "id": category.id,
+            "name": category.name,
+            "name_zh": category.name_zh,
+            "description": category.description,
+            "created_at": category.created_at.isoformat() if category.created_at else None
+        }
+        categories_data.append(category_data)
+    
+    return categories_data
 
 # ==================== 新闻相关 API ====================
 

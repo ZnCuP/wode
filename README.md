@@ -184,4 +184,4 @@ python3 server.py
 3. 确保JavaScript启用以正常加载公共组件
 4. 建议使用现代浏览器以获得最佳体验# wode
 
-启动方式：python3 start_app.py --host localhost --port 8001
+启动方式：pkill -f "start_app.py" && nohup python3 start_app.py --host 0.0.0.0 --port 8001 > app.log 2>&1 &
