@@ -2,7 +2,7 @@
 数据库 CRUD 操作
 """
 
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import desc
 from typing import List, Optional
 from .models import *
@@ -22,7 +22,7 @@ def get_products_list(
     limit: int = 100
 ) -> List[Product]:
     """获取产品列表"""
-    query = db.query(Product).filter(Product.is_active == is_active)
+    query = db.query(Product).options(joinedload(Product.category)).filter(Product.is_active == is_active)
     
     if category_id:
         query = query.filter(Product.category_id == category_id)
@@ -31,7 +31,7 @@ def get_products_list(
 
 def get_product_by_id(db: Session, product_id: int) -> Optional[Product]:
     """根据ID获取产品"""
-    return db.query(Product).filter(Product.id == product_id).first()
+    return db.query(Product).options(joinedload(Product.category)).filter(Product.id == product_id).first()
 
 # ==================== 新闻相关操作 ====================
 
@@ -70,7 +70,7 @@ def get_faqs_list(
     is_active: bool = True
 ) -> List[FAQ]:
     """获取FAQ列表"""
-    query = db.query(FAQ).filter(FAQ.is_active == is_active)
+    query = db.query(FAQ).options(joinedload(FAQ.category)).filter(FAQ.is_active == is_active)
     
     if category_id:
         query = query.filter(FAQ.category_id == category_id)
@@ -91,7 +91,7 @@ def get_videos_list(
     limit: int = 50
 ) -> List[Video]:
     """获取视频列表"""
-    query = db.query(Video).filter(Video.is_active == is_active)
+    query = db.query(Video).options(joinedload(Video.category)).filter(Video.is_active == is_active)
     
     if category_id:
         query = query.filter(Video.category_id == category_id)
@@ -100,7 +100,7 @@ def get_videos_list(
 
 def get_video_by_id(db: Session, video_id: int) -> Optional[Video]:
     """根据ID获取视频"""
-    return db.query(Video).filter(Video.id == video_id).first()
+    return db.query(Video).options(joinedload(Video.category)).filter(Video.id == video_id).first()
 
 def increment_video_view_count(db: Session, video_id: int):
     """增加视频观看次数"""
