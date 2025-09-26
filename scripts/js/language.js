@@ -452,47 +452,58 @@ let currentLanguage = localStorage.getItem('language') || 'en';
 function initLanguageSwitcher() {
     console.log('Initializing language switcher...');
     const langToggle = document.getElementById('langToggle');
+    const overlayLangToggle = document.getElementById('overlayLangToggle');
     console.log('Language toggle element found:', langToggle);
+    console.log('Overlay language toggle element found:', overlayLangToggle);
     
     // 初始化时应用当前语言
     switchLanguage(currentLanguage);
     
-    if (langToggle) {
-        // 设置初始语言状态
-        console.log('Current language:', currentLanguage);
-        if (currentLanguage === 'zh') {
-            langToggle.classList.add('zh');
-        } else {
-            langToggle.classList.remove('zh');
-        }
+    // 语言切换处理函数
+    function handleLanguageToggle(e) {
+        e.preventDefault();
+        console.log('Language toggle clicked!');
+        currentLanguage = currentLanguage === 'en' ? 'zh' : 'en';
+        localStorage.setItem('language', currentLanguage);
+        console.log('Switched to language:', currentLanguage);
         
-        // 添加调试信息
-        langToggle.addEventListener('mousedown', function() {
-            console.log('Mouse down detected on language toggle');
-        });
+        // 更新所有语言切换按钮的状态
+        updateLanguageToggleStates();
         
-        // 语言切换事件
-        langToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Language toggle clicked!');
-            currentLanguage = currentLanguage === 'en' ? 'zh' : 'en';
-            localStorage.setItem('language', currentLanguage);
-            console.log('Switched to language:', currentLanguage);
-            
-            // 切换按钮状态
-            if (currentLanguage === 'zh') {
-                langToggle.classList.add('zh');
-            } else {
-                langToggle.classList.remove('zh');
-            }
-            
-            // 切换页面语言
-            switchLanguage(currentLanguage);
-        });
-        console.log('Language switcher initialized successfully!');
-    } else {
-        console.error('Language toggle element NOT found!');
+        // 切换页面语言
+        switchLanguage(currentLanguage);
     }
+    
+    // 更新语言切换按钮状态
+    function updateLanguageToggleStates() {
+        const toggles = [langToggle, overlayLangToggle].filter(toggle => toggle);
+        toggles.forEach(toggle => {
+            if (currentLanguage === 'zh') {
+                toggle.classList.add('zh');
+            } else {
+                toggle.classList.remove('zh');
+            }
+        });
+    }
+    
+    // 绑定主页面语言切换按钮
+    if (langToggle) {
+        langToggle.addEventListener('click', handleLanguageToggle);
+        console.log('Main language switcher initialized successfully!');
+    } else {
+        console.error('Main language toggle element NOT found!');
+    }
+    
+    // 绑定遮罩内语言切换按钮
+    if (overlayLangToggle) {
+        overlayLangToggle.addEventListener('click', handleLanguageToggle);
+        console.log('Overlay language switcher initialized successfully!');
+    } else {
+        console.error('Overlay language toggle element NOT found!');
+    }
+    
+    // 设置初始语言状态
+    updateLanguageToggleStates();
 }
 
 // 切换页面语言

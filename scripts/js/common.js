@@ -120,6 +120,19 @@ function initMobileMenu() {
             // 控制液态玻璃遮罩
             if (glassOverlay) {
                 glassOverlay.classList.toggle('active');
+                
+                // 当遮罩打开时，更新遮罩内语言切换按钮的状态
+                if (glassOverlay.classList.contains('active')) {
+                    const overlayLangToggle = document.getElementById('overlayLangToggle');
+                    if (overlayLangToggle) {
+                        const currentLang = localStorage.getItem('language') || 'en';
+                        if (currentLang === 'zh') {
+                            overlayLangToggle.classList.add('zh');
+                        } else {
+                            overlayLangToggle.classList.remove('zh');
+                        }
+                    }
+                }
             }
             
             // 防止背景滚动
@@ -140,8 +153,8 @@ function initMobileMenu() {
             });
         }
         
-        // 点击菜单项后关闭菜单
-        const menuItems = mobileMenu.querySelectorAll('a');
+        // 点击菜单项后关闭菜单（排除父级导航链接）
+        const menuItems = mobileMenu.querySelectorAll('a:not(.parent-nav-link)');
         menuItems.forEach(item => {
             item.addEventListener('click', () => {
                 mobileMenuToggle.classList.remove('active');
@@ -152,7 +165,114 @@ function initMobileMenu() {
                 document.body.style.overflow = '';
             });
         });
+        
+        // 初始化导航替换功能
+        initNavigationReplacement();
     }
+}
+
+// 导航替换功能
+function initNavigationReplacement() {
+    const parentNavLinks = document.querySelectorAll('.parent-nav-link');
+    const overlayNavMenu = document.querySelector('.overlay-nav-menu');
+    let originalNavItems = null;
+    
+    // 定义子菜单数据
+    const subMenus = {
+        about: [
+            { href: 'profile.html', key: 'goWorldProfile', text: 'Go-World Profile' },
+            { href: 'rd-equipment.html', key: 'rdEquipment', text: 'R&D and Equipment' }
+        ],
+        support: [
+            { href: 'faq.html', key: 'faqs', text: 'FAQs' },
+            { href: 'videos.html', key: 'videos', text: 'Videos' }
+        ]
+    };
+    
+    // 父级导航点击事件
+    parentNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // 阻止事件冒泡
+            const submenuType = this.getAttribute('data-submenu');
+            showSubMenu(submenuType);
+        });
+    });
+    
+    // 显示子菜单
+    function showSubMenu(submenuType) {
+        if (!overlayNavMenu || !subMenus[submenuType]) return;
+        
+        // 保存原始导航项（如果还没保存）
+        if (!originalNavItems) {
+            originalNavItems = overlayNavMenu.innerHTML;
+        }
+        
+        // 创建子菜单HTML
+        const subMenuItems = subMenus[submenuType];
+        let subMenuHTML = '';
+        
+        // 添加子菜单项
+        subMenuItems.forEach(item => {
+            subMenuHTML += `
+                <li class="overlay-nav-item">
+                    <a href="${item.href}" class="overlay-nav-link" data-translate="${item.key}">${item.text}</a>
+                </li>
+            `;
+        });
+        
+        // 添加返回按钮（在第三个位置）
+        subMenuHTML += `
+            <li class="overlay-nav-item">
+                <button class="back-button-nav" id="backButtonNav">
+                    <span class="back-arrow">◀</span>
+                </button>
+            </li>
+        `;
+        
+        // 替换导航内容
+        overlayNavMenu.innerHTML = subMenuHTML;
+        
+        // 绑定返回按钮事件
+        const backButton = document.getElementById('backButtonNav');
+        if (backButton) {
+            backButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation(); // 阻止事件冒泡
+                showMainMenu();
+            });
+        }
+        
+        // 绑定子菜单项点击关闭事件
+        const subMenuLinks = overlayNavMenu.querySelectorAll('a');
+        subMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                const mobileMenu = document.getElementById('mobileMenu');
+                const glassOverlay = document.getElementById('glassOverlay');
+                
+                mobileMenuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                if (glassOverlay) {
+                    glassOverlay.classList.remove('active');
+                }
+                document.body.style.overflow = '';
+                
+                // 注意：这里不调用showMainMenu()，因为遮罩已经关闭，用户将跳转到新页面
+            });
+        });
+    }
+    
+    // 显示主导航
+     function showMainMenu() {
+         if (!overlayNavMenu || !originalNavItems) return;
+         
+         // 恢复原始导航
+         overlayNavMenu.innerHTML = originalNavItems;
+         
+         // 重新初始化导航替换功能
+         initNavigationReplacement();
+     }
 }
 
 // 底部下拉菜单功能

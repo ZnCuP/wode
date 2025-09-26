@@ -33,7 +33,21 @@ main {
 
 /* ============ HEADER 样式 - 按照设计图重新构建 ============ */
 header {
-    background-color: rgb(103, 103, 103);
+    /* 液态玻璃效果背景 */
+    background: linear-gradient(135deg, 
+        rgba(103, 103, 103, 0.85) 0%, 
+        rgba(103, 103, 103, 0.9) 25%, 
+        rgba(103, 103, 103, 0.85) 50%, 
+        rgba(103, 103, 103, 0.9) 75%, 
+        rgba(103, 103, 103, 0.85) 100%);
+    
+    /* 玻璃模糊效果 */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    
+    /* 玻璃边框效果 */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
     padding: 15px 0;
     position: fixed;
     top: 0;
@@ -41,7 +55,71 @@ header {
     right: 0;
     z-index: 1000;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.1);
+    
+    /* 增强的阴影效果 */
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        0 4px 16px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    
+    /* 平滑过渡 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 液态玻璃效果的动画伪元素 */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.05) 25%, 
+        transparent 50%, 
+        rgba(255, 255, 255, 0.05) 75%, 
+        transparent 100%);
+    background-size: 200% 200%;
+    animation: glassShimmer 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 液态玻璃闪烁动画 */
+@keyframes glassShimmer {
+    0%, 100% {
+        background-position: 0% 0%;
+        opacity: 0.3;
+    }
+    25% {
+        background-position: 100% 100%;
+        opacity: 0.6;
+    }
+    50% {
+        background-position: 200% 200%;
+        opacity: 0.3;
+    }
+    75% {
+        background-position: 300% 100%;
+        opacity: 0.6;
+    }
+}
+
+/* 滚动时的液态玻璃效果增强 */
+header.scrolled {
+    background: linear-gradient(135deg, 
+        rgba(103, 103, 103, 0.9) 0%, 
+        rgba(103, 103, 103, 0.95) 25%, 
+        rgba(103, 103, 103, 0.9) 50%, 
+        rgba(103, 103, 103, 0.95) 75%, 
+        rgba(103, 103, 103, 0.9) 100%);
+    backdrop-filter: blur(25px) saturate(200%);
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 header .container {
@@ -50,6 +128,8 @@ header .container {
     justify-content: space-between;
     max-width: none;
     padding: 0 30px;
+    position: relative;
+    z-index: 2;
 }
 
 /* 左侧：Logo */
@@ -3561,9 +3641,226 @@ footer {
     transform: scale(1);
 }
 
+/* 遮罩内导航菜单样式 */
+.overlay-nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 60px 40px;
+}
+
+.overlay-nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.overlay-nav-item {
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.glass-overlay.active .overlay-nav-item {
+    opacity: 1;
+    transform: translateY(0);
+    animation: slideInUp 0.6s ease forwards;
+}
+
+/* 渐进式动画延迟 */
+.glass-overlay.active .overlay-nav-item:nth-child(1) { animation-delay: 0.1s; }
+.glass-overlay.active .overlay-nav-item:nth-child(2) { animation-delay: 0.2s; }
+.glass-overlay.active .overlay-nav-item:nth-child(3) { animation-delay: 0.3s; }
+.glass-overlay.active .overlay-nav-item:nth-child(4) { animation-delay: 0.4s; }
+.glass-overlay.active .overlay-nav-item:nth-child(5) { animation-delay: 0.5s; }
+.glass-overlay.active .overlay-nav-item:nth-child(6) { animation-delay: 0.6s; }
+.glass-overlay.active .overlay-nav-item:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.overlay-nav-link {
+    display: block;
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 300;
+    padding: 15px 30px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.overlay-nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 1);
+}
+
+/* 下拉菜单样式 */
+.overlay-nav-item.dropdown .overlay-dropdown-menu {
+    display: none;
+    margin-top: 15px;
+    padding: 15px 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.overlay-nav-item.dropdown:hover .overlay-dropdown-menu {
+    display: block;
+}
+
+.overlay-dropdown-link {
+    display: block;
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 300;
+    padding: 10px 20px;
+    margin: 5px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: none;
+    letter-spacing: 0.5px;
+}
+
+.overlay-dropdown-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(0, 0, 0, 0.9);
+    transform: translateX(10px);
+}
+
+/* 语言切换按钮样式 */
+.overlay-language-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    width: 80px;
+    height: 40px;
+    margin: 0 auto;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.overlay-language-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.overlay-language-toggle .lang-text {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.overlay-language-toggle .lang-en {
+    left: 15px;
+}
+
+.overlay-language-toggle .lang-zh {
+    right: 15px;
+}
+
+/* 当前语言的背景色显示 */
+.overlay-language-toggle.zh .lang-zh {
+    background: rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 1);
+    border-radius: 15px;
+    padding: 5px 8px;
+}
+
+.overlay-language-toggle:not(.zh) .lang-en {
+    background: rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 1);
+    border-radius: 15px;
+    padding: 5px 8px;
+}
+
 /* 为移动端菜单添加更高的z-index */
 @media (max-width: 768px) {
     nav ul {
         z-index: 999;
     }
+    
+    .overlay-nav-link {
+        font-size: 20px;
+        padding: 12px 25px;
+    }
+    
+    .overlay-nav-menu {
+        gap: 15px;
+    }
+    
+    .overlay-nav-container {
+        padding: 40px 20px;
+    }
+}
+
+/* 返回按钮样式 */
+.back-button-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInUp 0.6s ease forwards;
+}
+
+.back-button-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.back-arrow {
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.back-button-nav:hover .back-arrow {
+    color: rgba(0, 0, 0, 1);
+    transform: translateX(-2px);
 }
