@@ -2,7 +2,7 @@
 Pydantic 模式定义，用于API数据验证和序列化
 """
 
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import Optional, Dict, Any
 from datetime import datetime
 
@@ -154,7 +154,7 @@ class VideoResponse(VideoBase):
 
 class ContactCreate(BaseModel):
     name: str
-    email: EmailStr
+    email: str
     phone: Optional[str] = None
     company: Optional[str] = None
     subject: Optional[str] = None
