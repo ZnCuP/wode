@@ -11,7 +11,9 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 import os
 from dotenv import load_dotenv
+from pathlib import Path
 
+# 假设您的项目结构和依赖导入保持不变
 from .database import get_db, engine
 from .models import Base
 from .schemas import *
@@ -39,12 +41,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 挂载静态文件
-import os
-from pathlib import Path
-
-# 获取项目根目录
-project_root = os.path.dirname(os.path.dirname(__file__))
+# ----------------------------------------------------
+# 静态文件挂载
+# ----------------------------------------------------
+# 获取项目根目录 (假设此文件位于项目根目录下的某个子目录，例如 app/main.py)
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # 挂载各种静态资源
 assets_path = os.path.join(project_root, "assets")
@@ -52,40 +53,87 @@ styles_path = os.path.join(project_root, "styles")
 scripts_path = os.path.join(project_root, "scripts")
 templates_path = os.path.join(project_root, "templates")
 
-app.mount("/assets", StaticFiles(directory=assets_path), name="assets")
-app.mount("/styles", StaticFiles(directory=styles_path), name="styles")
-app.mount("/scripts", StaticFiles(directory=scripts_path), name="scripts")
-app.mount("/templates", StaticFiles(directory=templates_path), name="templates")
+# 检查路径是否存在，避免启动报错
+if os.path.isdir(assets_path):
+    app.mount("/assets", StaticFiles(directory=assets_path), name="assets")
+if os.path.isdir(styles_path):
+    app.mount("/styles", StaticFiles(directory=styles_path), name="styles")
+if os.path.isdir(scripts_path):
+    app.mount("/scripts", StaticFiles(directory=scripts_path), name="scripts")
+if os.path.isdir(templates_path):
+    app.mount("/templates", StaticFiles(directory=templates_path), name="templates")
 
-# 添加前端页面路由
+# ----------------------------------------------------
+# 前端页面路由 - 按优先级排序 (特定在前，通用在后)
+# ----------------------------------------------------
 
-@app.get("/")
-async def serve_index():
-    """提供主页"""
-    return FileResponse(os.path.join(project_root, "index.html"))
+# 1. 优先级最高：API 根路径和健康检查 (确保不被通用路由捕获)
+@app.get("/api")
+async def api_root():
+    return {"message": "Go-World Auto Spare Parts API", "version": "1.0.0"}
 
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
+
+# 2. 优先级高：特定文件路由 (解决 style.css 404)
 @app.get("/style.css")
 async def serve_style_css():
     """提供主样式文件"""
-    return FileResponse(os.path.join(project_root, "style.css"))
+    file_path = os.path.join(project_root, "style.css")
+    if os.path.exists(file_path):
+        return FileResponse(file_path)
+    raise HTTPException(status_code=404, detail="style.css not found")
 
+# 3. 优先级高：主页路由
+@app.get("/")
+async def serve_index():
+    """提供主页：/ 自动加载 pages/index.html"""
+    page_path = os.path.join(project_root, "pages", "index.html")
+    if os.path.exists(page_path):
+        return FileResponse(page_path)
+    # 兼容项目根目录下的 index.html
+    return FileResponse(os.path.join(project_root, "index.html"))
+
+# 4. 优先级中：兼容旧链接的路由
 @app.get("/pages/{page_name}")
 async def serve_page(page_name: str):
-    """提供页面文件"""
+    """提供页面文件 (兼容 /pages/xxx.html 这种旧链接)"""
     page_path = os.path.join(project_root, "pages", page_name)
     if os.path.exists(page_path) and page_name.endswith('.html'):
         return FileResponse(page_path)
     raise HTTPException(status_code=404, detail="Page not found")
 
-# API根路径信息
-@app.get("/api")
-async def api_root():
-    return {"message": "Go-World Auto Spare Parts API", "version": "1.0.0"}
+# 5. 优先级低：通用页面路由 (实现 URL 简洁化)
+@app.get("/{page_alias}")
+async def serve_clean_page(page_alias: str):
+    """
+    通过别名提供页面文件。
+    例如：访问 /news 将查找 pages/news.html
+    """
+    
+    # 豁免检查：防止通用路由捕获静态文件或 API 路径
+    EXCLUDED_PREFIXES = ('api/', 'assets/', 'styles/', 'scripts/', 'templates/')
+    if page_alias.startswith(EXCLUDED_PREFIXES) or page_alias in ['style.css', 'health']:
+        # 由于路由顺序正确，理论上不会到达这里，但作为安全措施
+        raise HTTPException(status_code=404, detail="Resource excluded from clean URL matching")
 
-# 健康检查
-@app.get("/health")
-async def health_check():
-    return {"status": "healthy"}
+    # 1. 构造带 .html 后缀的完整路径
+    page_name_with_html = page_alias + ".html"
+    page_path = os.path.join(project_root, "pages", page_name_with_html)
+    
+    # 2. 检查文件是否存在
+    if os.path.exists(page_path):
+        return FileResponse(page_path)
+    
+    # 3. 容错：如果请求本身带有 .html (尽管不应该发生)
+    if page_alias.endswith('.html'):
+        page_path_direct = os.path.join(project_root, "pages", page_alias)
+        if os.path.exists(page_path_direct):
+             return FileResponse(page_path_direct)
+    
+    raise HTTPException(status_code=404, detail="Page not found")
+
 
 # ==================== 产品相关 API ====================
 
