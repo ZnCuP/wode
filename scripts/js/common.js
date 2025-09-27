@@ -18,7 +18,7 @@ function loadFallback(containerId) {
             <header>
                 <div class="container">
                     <div class="header-left">
-                        <a href="index.html" class="logo">GW-GoWorld</a>
+                        <a href="index" class="logo">GW-GoWorld</a>
                     </div>
                     
                     <div class="header-right">
@@ -31,24 +31,24 @@ function loadFallback(containerId) {
                         
                         <nav>
                             <ul id="mobileMenu">
-                                <li><a href="index.html" data-translate="home">Home</a></li>
+                                <li><a href="index" data-translate="home">Home</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropbtn" data-translate="about">About</a>
                                     <div class="dropdown-menu">
-                                        <a href="profile.html" data-translate="goWorldProfile">Go-World Profile</a>
-                                        <a href="rd-equipment.html" data-translate="rdEquipment">R&D and Equipment</a>
+                                        <a href="profile" data-translate="goWorldProfile">Go-World Profile</a>
+                                        <a href="rd-equipment" data-translate="rdEquipment">R&D and Equipment</a>
                                     </div>
                                 </li>
-                                <li><a href="products.html" data-translate="products">Products</a></li>
-                                <li><a href="news.html" data-translate="news">News</a></li>
+                                <li><a href="products" data-translate="products">Products</a></li>
+                                <li><a href="news" data-translate="news">News</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropbtn" data-translate="support">Support</a>
                                     <div class="dropdown-menu">
-                                        <a href="faq.html" data-translate="faqs">FAQs</a>
-                                        <a href="videos.html" data-translate="videos">Videos</a>
+                                        <a href="faq" data-translate="faqs">FAQs</a>
+                                        <a href="videos" data-translate="videos">Videos</a>
                                     </div>
                                 </li>
-                                <li><a href="contact.html" data-translate="contactUs">Contact us</a></li>
+                                <li><a href="contact" data-translate="contactUs">Contact us</a></li>
                                 <li class="language-nav">
                                     <button class="language-toggle" id="langToggle">
                                         <span id="currentLang">EN</span>
@@ -74,17 +74,17 @@ function loadFallback(containerId) {
                         <div class="footer-section">
                             <h3 data-translate="products">Products</h3>
                             <ul>
-                                <li><a href="products.html" data-translate="mapSensor">MAP Sensor</a></li>
-                                <li><a href="products.html" data-translate="oilLevelSensor">Oil Level Sensor</a></li>
-                                <li><a href="products.html">Temperature Sensor</a></li>
+                                <li><a href="products" data-translate="mapSensor">MAP Sensor</a></li>
+                                <li><a href="products" data-translate="oilLevelSensor">Oil Level Sensor</a></li>
+                                <li><a href="products">Temperature Sensor</a></li>
                             </ul>
                         </div>
                         <div class="footer-section">
                             <h3 data-translate="support">Support</h3>
                             <ul>
-                                <li><a href="faq.html" data-translate="faqs">FAQ</a></li>
-                                <li><a href="videos.html" data-translate="videos">Videos</a></li>
-                                <li><a href="contact.html" data-translate="contactUs">Contact us</a></li>
+                                <li><a href="faq" data-translate="faqs">FAQ</a></li>
+                                <li><a href="videos" data-translate="videos">Videos</a></li>
+                                <li><a href="contact" data-translate="contactUs">Contact us</a></li>
                             </ul>
                         </div>
                         <div class="footer-section">
@@ -180,12 +180,12 @@ function initNavigationReplacement() {
     // 定义子菜单数据
     const subMenus = {
         about: [
-            { href: 'profile.html', key: 'goWorldProfile', text: 'Go-World Profile' },
-            { href: 'rd-equipment.html', key: 'rdEquipment', text: 'R&D and Equipment' }
+            { href: 'profile', key: 'goWorldProfile', text: 'Go-World Profile' },
+            { href: 'rd-equipment', key: 'rdEquipment', text: 'R&D and Equipment' }
         ],
         support: [
-            { href: 'faq.html', key: 'faqs', text: 'FAQs' },
-            { href: 'videos.html', key: 'videos', text: 'Videos' }
+            { href: 'faq', key: 'faqs', text: 'FAQs' },
+            { href: 'videos', key: 'videos', text: 'Videos' }
         ]
     };
     

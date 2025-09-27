@@ -138,7 +138,7 @@ class NewsManager {
         sessionStorage.setItem('currentArticle', JSON.stringify(article));
         
         // 跳转到详情页
-        window.location.href = './news-detail.html';
+        window.location.href = './news-detail';
     }
 
     bindEvents() {

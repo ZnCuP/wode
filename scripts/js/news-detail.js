@@ -20,11 +20,11 @@ class NewsDetailManager {
                 this.currentArticle = JSON.parse(articleData);
             } else {
                 // 如果没有文章数据，返回新闻页
-                window.location.href = './news.html';
+                window.location.href = './news';
             }
         } catch (error) {
             console.error('Failed to load current article:', error);
-            window.location.href = './news.html';
+            window.location.href = './news';
         }
     }
 
