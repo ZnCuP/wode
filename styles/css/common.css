@@ -3864,3 +3864,342 @@ footer {
     color: rgba(0, 0, 0, 1);
     transform: translateX(-2px);
 }
+
+/* ============ 产品详情弹窗样式 ============ */
+.product-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.product-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow: hidden;
+    position: relative;
+    animation: slideInUp 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 10001;
+}
+
+.close-modal {
+    color: #666;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.9);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal:hover {
+    color: #000;
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+}
+
+.modal-body {
+    padding: 0;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* 弹窗内的产品详情样式 */
+.modal-body .product-detail-container {
+    max-width: none;
+    margin: 0;
+    padding: 30px;
+    background: #fff;
+    min-height: auto;
+}
+
+.modal-body .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 16px;
+    color: #666;
+}
+
+.modal-body .loading::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+}
+
+.modal-body .error {
+    text-align: center;
+    padding: 50px 20px;
+    color: #dc3545;
+}
+
+.modal-body .product-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+    align-items: start;
+}
+
+.modal-body .product-image {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: #f8f9fa;
+    padding: 20px;
+}
+
+.modal-body .product-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.modal-body .product-sku {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.modal-body .product-category {
+    display: inline-block;
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modal-body .product-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #495057;
+    margin-bottom: 20px;
+}
+
+.modal-body .product-specifications {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.modal-body .specifications-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.modal-body .specifications-title::before {
+    content: '📋';
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.modal-body .specifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.modal-body .spec-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modal-body .spec-item:last-child {
+    border-bottom: none;
+}
+
+.modal-body .spec-label {
+    font-weight: 500;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.modal-body .spec-value {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.modal-body .product-features {
+    margin-bottom: 20px;
+}
+
+.modal-body .features-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-body .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.modal-body .feature-card {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.modal-body .feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-color: #007bff;
+}
+
+.modal-body .feature-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.modal-body .feature-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.modal-body .feature-description {
+    font-size: 13px;
+    color: #6c757d;
+    line-height: 1.4;
+}
+
+/* 弹窗动画 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 移动端弹窗样式 */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+        margin: 10px;
+    }
+
+    .modal-body .product-detail-container {
+        padding: 20px;
+    }
+
+    .modal-body .product-header {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .modal-body .product-title {
+        font-size: 24px;
+    }
+
+    .modal-body .features-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .modal-body .feature-card {
+        padding: 15px;
+    }
+
+    .modal-body .specifications-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        width: 98%;
+        max-height: 98vh;
+        border-radius: 10px;
+    }
+
+    .modal-body .product-detail-container {
+        padding: 15px;
+    }
+
+    .modal-body .product-title {
+        font-size: 20px;
+    }
+
+    .modal-body .features-title {
+        font-size: 18px;
+    }
+
+    .close-modal {
+        width: 35px;
+        height: 35px;
+        font-size: 24px;
+    }
+}

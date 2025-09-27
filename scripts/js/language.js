@@ -456,6 +456,10 @@ function initLanguageSwitcher() {
     console.log('Language toggle element found:', langToggle);
     console.log('Overlay language toggle element found:', overlayLangToggle);
     
+    // 确保currentLanguage与localStorage同步
+    currentLanguage = localStorage.getItem('language') || 'en';
+    console.log('Current language from localStorage:', currentLanguage);
+    
     // 初始化时应用当前语言
     switchLanguage(currentLanguage);
     

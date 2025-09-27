@@ -38,7 +38,8 @@ async function fetchCategories() {
         return categories;
     } catch (error) {
         console.error('Error fetching categories:', error);
-        return [];
+        console.log('Using local categories data as fallback');
+        return localCategoriesData;
     }
 }
 
@@ -56,7 +57,7 @@ function renderProductCard(product) {
             <p>${productDescription}</p>
             ${product.price ? `<div class="product-price">$${product.price}</div>` : ''}
             ${product.sku ? `<div class="product-sku">SKU: ${product.sku}</div>` : ''}
-            <a href="#" class="product-link" data-translate="viewMore">View More</a>
+            <button class="product-link view-more-btn" data-product-id="${product.id}" data-translate="viewMore">View More</button>
         </div>
     `;
 }
@@ -172,8 +173,429 @@ function handleLanguageChange() {
     initProductsPage();
 }
 
+// 本地产品数据（与product-detail.js保持一致）
+const localProductsData = [
+    {
+        id: 1,
+        name: "Engine Control Module",
+        name_zh: "发动机控制模块",
+        description: "Advanced engine management system for optimal performance",
+        description_zh: "先进的发动机管理系统，实现最佳性能",
+        image_url: "../assets/temp.png",
+        sku: "ECM-001",
+        category: "Engine Control",
+        category_zh: "发动机控制",
+        specifications: {
+            voltage: "12V DC",
+            temperature: "-40°C to +85°C",
+            protocol: "CAN Bus",
+            certification: "ISO 9001"
+        },
+        features: [
+            {
+                icon: "⚡",
+                title: "High Performance",
+                title_zh: "高性能",
+                description: "Advanced processing capabilities",
+                description_zh: "先进的处理能力"
+            },
+            {
+                icon: "🔧",
+                title: "Easy Installation",
+                title_zh: "易于安装",
+                description: "Plug and play design",
+                description_zh: "即插即用设计"
+            },
+            {
+                icon: "🛡️",
+                title: "Reliable",
+                title_zh: "可靠性",
+                description: "Tested for durability",
+                description_zh: "经过耐久性测试"
+            }
+        ]
+    },
+    {
+        id: 2,
+        name: "Transmission Control Unit",
+        name_zh: "变速箱控制单元",
+        description: "Intelligent transmission control for smooth shifting",
+        description_zh: "智能变速箱控制，实现平稳换挡",
+        image_url: "../assets/temp.png",
+        sku: "TCU-002",
+        category: "Transmission",
+        category_zh: "变速箱",
+        specifications: {
+            voltage: "24V DC",
+            temperature: "-30°C to +70°C",
+            protocol: "LIN Bus",
+            certification: "ISO 14001"
+        },
+        features: [
+            {
+                icon: "🔄",
+                title: "Smooth Operation",
+                title_zh: "平稳运行",
+                description: "Seamless gear transitions",
+                description_zh: "无缝换挡过渡"
+            },
+            {
+                icon: "💡",
+                title: "Smart Control",
+                title_zh: "智能控制",
+                description: "Adaptive learning algorithms",
+                description_zh: "自适应学习算法"
+            },
+            {
+                icon: "🔒",
+                title: "Secure",
+                title_zh: "安全",
+                description: "Built-in safety features",
+                description_zh: "内置安全功能"
+            }
+        ]
+    },
+    {
+        id: 3,
+        name: "ABS Control Module",
+        name_zh: "ABS控制模块",
+        description: "Anti-lock braking system for enhanced safety",
+        description_zh: "防抱死制动系统，提升安全性",
+        image_url: "../assets/temp.png",
+        sku: "ABS-003",
+        category: "Safety Systems",
+        category_zh: "安全系统",
+        specifications: {
+            voltage: "12V DC",
+            temperature: "-40°C to +85°C",
+            protocol: "CAN Bus",
+            certification: "ECE R90"
+        },
+        features: [
+            {
+                icon: "🚗",
+                title: "Vehicle Safety",
+                title_zh: "车辆安全",
+                description: "Prevents wheel lockup",
+                description_zh: "防止车轮抱死"
+            },
+            {
+                icon: "⚡",
+                title: "Fast Response",
+                title_zh: "快速响应",
+                description: "Millisecond reaction time",
+                description_zh: "毫秒级反应时间"
+            },
+            {
+                icon: "🔧",
+                title: "Maintenance Free",
+                title_zh: "免维护",
+                description: "Self-diagnostic capabilities",
+                description_zh: "自诊断功能"
+            }
+        ]
+    },
+    {
+        id: 4,
+        name: "Airbag Control Unit",
+        name_zh: "安全气囊控制单元",
+        description: "Comprehensive airbag deployment system",
+        description_zh: "全面的安全气囊展开系统",
+        image_url: "../assets/temp.png",
+        sku: "ACU-004",
+        category: "Safety Systems",
+        category_zh: "安全系统",
+        specifications: {
+            voltage: "12V DC",
+            temperature: "-40°C to +85°C",
+            protocol: "CAN Bus",
+            certification: "FMVSS 208"
+        },
+        features: [
+            {
+                icon: "🛡️",
+                title: "Crash Protection",
+                title_zh: "碰撞保护",
+                description: "Multi-stage deployment",
+                description_zh: "多级展开"
+            },
+            {
+                icon: "📊",
+                title: "Sensor Integration",
+                title_zh: "传感器集成",
+                description: "Multiple sensor inputs",
+                description_zh: "多传感器输入"
+            },
+            {
+                icon: "⚡",
+                title: "Instant Response",
+                title_zh: "瞬时响应",
+                description: "Microsecond activation",
+                description_zh: "微秒级激活"
+            }
+        ]
+    },
+    {
+        id: 5,
+        name: "Steering Angle Sensor",
+        name_zh: "转向角度传感器",
+        description: "High-precision steering wheel position sensor for vehicle stability control",
+        description_zh: "高精度方向盘位置传感器，用于车辆稳定性控制",
+        image_url: "../assets/temp.png",
+        sku: "SAS-001",
+        category: "Sensors",
+        category_zh: "传感器",
+        specifications: {
+            voltage: "5V DC",
+            temperature: "-40°C to +125°C",
+            protocol: "CAN Bus",
+            certification: "ISO 26262"
+        },
+        features: [
+            {
+                icon: "🎯",
+                title: "High Precision",
+                title_zh: "高精度",
+                description: "±0.1° accuracy",
+                description_zh: "±0.1°精度"
+            },
+            {
+                icon: "🔄",
+                title: "360° Detection",
+                title_zh: "360°检测",
+                description: "Full rotation sensing",
+                description_zh: "全旋转感应"
+            },
+            {
+                icon: "⚡",
+                title: "Fast Response",
+                title_zh: "快速响应",
+                description: "Real-time feedback",
+                description_zh: "实时反馈"
+            }
+        ]
+    },
+    {
+        id: 6,
+        name: "Diesel Glow Plug Controller",
+        name_zh: "柴油预热塞控制器",
+        description: "Intelligent glow plug control module for diesel engine cold start",
+        description_zh: "智能预热塞控制模块，用于柴油发动机冷启动",
+        image_url: "../assets/temp.png",
+        sku: "DGPC-001",
+        category: "Engine Control",
+        category_zh: "发动机控制",
+        specifications: {
+            voltage: "12V DC",
+            temperature: "-40°C to +85°C",
+            protocol: "CAN Bus",
+            certification: "ISO 9001"
+        },
+        features: [
+            {
+                icon: "🔥",
+                title: "Smart Heating",
+                title_zh: "智能加热",
+                description: "Optimal temperature control",
+                description_zh: "最佳温度控制"
+            },
+            {
+                icon: "❄️",
+                title: "Cold Start",
+                title_zh: "冷启动",
+                description: "Enhanced cold weather performance",
+                description_zh: "增强低温性能"
+            },
+            {
+                icon: "⚡",
+                title: "Energy Efficient",
+                title_zh: "节能",
+                description: "Reduced power consumption",
+                description_zh: "降低功耗"
+            }
+        ]
+    }
+];
+
+// 技术规格标签的中英文映射
+const specificationLabels = {
+    voltage: { en: 'Voltage', zh: '电压' },
+    temperature: { en: 'Temperature', zh: '温度' },
+    protocol: { en: 'Protocol', zh: '协议' },
+    certification: { en: 'Certification', zh: '认证' },
+    pressure: { en: 'Pressure', zh: '压力' },
+    frequency: { en: 'Frequency', zh: '频率' },
+    current: { en: 'Current', zh: '电流' },
+    power: { en: 'Power', zh: '功率' },
+    material: { en: 'Material', zh: '材料' },
+    weight: { en: 'Weight', zh: '重量' },
+    dimensions: { en: 'Dimensions', zh: '尺寸' }
+};
+
+/**
+ * 获取本地产品数据
+ */
+function getLocalProduct(productId) {
+    return localProductsData.find(product => product.id === parseInt(productId));
+}
+
+/**
+ * 渲染产品详情弹窗内容
+ */
+function renderProductModal(product) {
+    const currentLanguage = localStorage.getItem('language') || 'en';
+    
+    const productName = currentLanguage === 'zh' ? product.name_zh : product.name;
+    const productDescription = currentLanguage === 'zh' ? product.description_zh : product.description;
+    const productCategory = currentLanguage === 'zh' ? product.category_zh : product.category;
+    
+    return `
+        <div class="product-detail-container">
+            <div class="loading" id="modal-loading" style="display: none;">
+                Loading product details...
+            </div>
+            <div class="error" id="modal-error" style="display: none;">
+                <h3>Error Loading Product</h3>
+                <p>Unable to load product details. Please try again later.</p>
+            </div>
+            <div id="modal-product-content">
+                <div class="product-header">
+                    <img src="${product.image_url}" alt="${productName}" class="product-image" onerror="this.src='../assets/temp.png'">
+                    <div class="product-info">
+                        <h1 class="product-title">${productName}</h1>
+                        <div class="product-sku">SKU: ${product.sku}</div>
+                        <div class="product-category">${productCategory}</div>
+                        <p class="product-description">${productDescription}</p>
+                    </div>
+                </div>
+                
+                <div class="product-specifications">
+                    <h3 class="specifications-title">${currentLanguage === 'zh' ? '技术规格' : 'Technical Specifications'}</h3>
+                    <div class="specifications-grid">
+                        ${Object.entries(product.specifications).map(([key, value]) => {
+                            const labelTranslation = specificationLabels[key.toLowerCase()];
+                            const label = labelTranslation 
+                                ? (currentLanguage === 'zh' ? labelTranslation.zh : labelTranslation.en)
+                                : key.charAt(0).toUpperCase() + key.slice(1);
+                            return `
+                                <div class="spec-item">
+                                    <span class="spec-label">${label}</span>
+                                    <span class="spec-value">${value}</span>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+                
+                <div class="product-features">
+                    <h3 class="features-title">${currentLanguage === 'zh' ? '核心特性' : 'Key Features'}</h3>
+                    <div class="features-grid">
+                        ${product.features.map(feature => {
+                            const featureTitle = currentLanguage === 'zh' ? feature.title_zh : feature.title;
+                            const featureDescription = currentLanguage === 'zh' ? feature.description_zh : feature.description;
+                            return `
+                                <div class="feature-card">
+                                    <span class="feature-icon">${feature.icon}</span>
+                                    <h4 class="feature-title">${featureTitle}</h4>
+                                    <p class="feature-description">${featureDescription}</p>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+/**
+ * 显示产品详情弹窗
+ */
+function showProductModal(productId) {
+    const modal = document.getElementById('productModal');
+    const modalBody = modal.querySelector('.modal-body');
+    
+    // 显示加载状态
+    modalBody.innerHTML = '<div class="loading">Loading product details...</div>';
+    modal.classList.add('show');
+    
+    // 禁用页面滚动
+    document.body.style.overflow = 'hidden';
+    
+    // 获取产品数据
+    const product = getLocalProduct(productId);
+    
+    if (product) {
+        // 渲染产品详情
+        modalBody.innerHTML = renderProductModal(product);
+    } else {
+        // 显示错误信息
+        modalBody.innerHTML = `
+            <div class="error">
+                <h3>Product Not Found</h3>
+                <p>The requested product could not be found.</p>
+            </div>
+        `;
+    }
+}
+
+/**
+ * 隐藏产品详情弹窗
+ */
+function hideProductModal() {
+    const modal = document.getElementById('productModal');
+    modal.classList.remove('show');
+    
+    // 恢复页面滚动
+    document.body.style.overflow = '';
+}
+
+/**
+ * 初始化弹窗事件监听
+ */
+function initModalEvents() {
+    // 监听View More按钮点击
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('view-more-btn')) {
+            event.preventDefault();
+            const productId = event.target.dataset.productId;
+            showProductModal(productId);
+        }
+    });
+    
+    // 监听关闭按钮点击
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('close-modal')) {
+            hideProductModal();
+        }
+    });
+    
+    // 监听弹窗背景点击
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('product-modal')) {
+            hideProductModal();
+        }
+    });
+    
+    // 监听ESC键
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const modal = document.getElementById('productModal');
+            if (modal.classList.contains('show')) {
+                hideProductModal();
+            }
+        }
+    });
+}
+
 // 页面加载完成后初始化
-document.addEventListener('DOMContentLoaded', initProductsPage);
+document.addEventListener('DOMContentLoaded', function() {
+    // 延迟初始化以确保common.js中的语言切换功能先初始化
+    setTimeout(() => {
+        initProductsPage();
+        initModalEvents();
+    }, 150); // 比common.js的100ms稍晚一点
+});
 
 // 监听语言切换事件
 document.addEventListener('languageChanged', handleLanguageChange);
