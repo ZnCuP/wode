@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Go-World Auto Spare Parts</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../styles/css/common.css">
-    <link rel="stylesheet" href="../styles/css/language.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- 预加载关键CSS，然后异步应用 -->
+    <link rel="preload" href="../style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../styles/css/common.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../styles/css/language.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- 为不支持JavaScript的浏览器提供备用方案 -->
+    <noscript>
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../styles/css/common.css">
+        <link rel="stylesheet" href="../styles/css/language.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
 </head>
 <body>
     <!-- 公共头部容器 -->
@@ -29,7 +38,7 @@
                         <button class="read-more-btn" data-translate="readMore">READ MORE</button>
                     </div>
                     <div class="sales-video">
-                        <video controls poster="../assets/company.png" preload="metadata">
+                        <video controls poster="../assets/company.png" preload="none">
                             <source src="../assets/videos/info.mp4" type="video/mp4">
                             您的浏览器不支持视频播放。
                         </video>
@@ -44,7 +53,7 @@
                 <div class="products-grid">
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="../assets/oil_level_sensor.png" alt="Oil Level Sensor">
+                            <img src="../assets/oil_level_sensor.png" alt="Oil Level Sensor" loading="lazy">
                         </div>
                         <h3 data-translate="oilLevelSensor">OIL LEVEL SENSOR</h3>
                         <button class="view-more-btn" data-translate="viewMore">VIEW MORE</button>
@@ -52,7 +61,7 @@
                     
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="../assets/steering_angle_sensor.png" alt="Steering Angle Sensor">
+                            <img src="../assets/steering_angle_sensor.png" alt="Steering Angle Sensor" loading="lazy">
                         </div>
                         <h3 data-translate="steeringAngleSensor">STEERING ANGLE SENSOR</h3>
                         <button class="view-more-btn" data-translate="viewMore">VIEW MORE</button>
@@ -60,7 +69,7 @@
                     
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="../assets/height_level_sensor.png" alt="Height Level Sensor">
+                            <img src="../assets/height_level_sensor.png" alt="Height Level Sensor" loading="lazy">
                         </div>
                         <h3 data-translate="heightLevelSensor">HEIGHT LEVEL SENSOR</h3>
                         <button class="view-more-btn" data-translate="viewMore">VIEW MORE</button>
@@ -68,7 +77,7 @@
                     
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="../assets/oil_level_sensor.png" alt="MAP Sensor">
+                            <img src="../assets/oil_level_sensor.png" alt="MAP Sensor" loading="lazy">
                         </div>
                         <h3 data-translate="mapSensor">MAP SENSOR</h3>
                         <button class="view-more-btn" data-translate="viewMore">VIEW MORE</button>
@@ -76,7 +85,7 @@
                     
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="../assets/diesel_glow_controller.png" alt="Diesel Glow Plug Controller">
+                            <img src="../assets/diesel_glow_controller.png" alt="Diesel Glow Plug Controller" loading="lazy">
                         </div>
                         <h3 data-translate="dieselGlowController">Diesel Glow Plug Controller</h3>
                         <button class="view-more-btn" data-translate="viewMore">VIEW MORE</button>
@@ -84,7 +93,7 @@
                     
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="../assets/DPF_sensor.png" alt="DPF Sensor">
+                            <img src="../assets/DPF_sensor.png" alt="DPF Sensor" loading="lazy">
                         </div>
                         <h3 data-translate="dpfSensor">DPF SENSOR</h3>
                         <button class="view-more-btn" data-translate="viewMore">VIEW MORE</button>
@@ -110,7 +119,7 @@
                         </p>
                     </div>
                     <div class="info-image-panel">
-                        <img src="../assets/info_image_1.jpg" alt="Car Dashboard">
+                        <img src="../assets/info_image_1.jpg" alt="Car Dashboard" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -175,8 +184,8 @@
     <!-- 公共底部容器 -->
     <div id="footer-container"></div>
 
-    <!-- 加载公共组件的脚本 -->
-    <script src="../scripts/js/common.js"></script>
-    <script src="../scripts/js/language.js"></script>
+    <!-- 加载公共组件的脚本 - 使用defer避免阻塞渲染 -->
+    <script defer src="../scripts/js/common.js"></script>
+    <script defer src="../scripts/js/language.js"></script>
 </body>
 </html>
