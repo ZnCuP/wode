@@ -177,14 +177,14 @@ function handleLanguageChange() {
 const localProductsData = [
     {
         id: 1,
-        name: "Engine Control Module",
-        name_zh: "发动机控制模块",
-        description: "Advanced engine management system for optimal performance",
-        description_zh: "先进的发动机管理系统，实现最佳性能",
-        image_url: "../assets/temp.png",
-        sku: "ECM-001",
-        category: "Engine Control",
-        category_zh: "发动机控制",
+        name: "Oil Level Sensor",
+        name_zh: "油位传感器",
+        description: "High-precision oil level monitoring sensor for automotive applications",
+        description_zh: "用于汽车应用的高精度油位监测传感器",
+        image_url: "/assets/oil_level_sensor.png",
+        sku: "OLS-001",
+        category: "Sensors",
+        category_zh: "传感器",
         specifications: {
             voltage: "12V DC",
             temperature: "-40°C to +85°C",
@@ -217,14 +217,14 @@ const localProductsData = [
     },
     {
         id: 2,
-        name: "Transmission Control Unit",
-        name_zh: "变速箱控制单元",
-        description: "Intelligent transmission control for smooth shifting",
-        description_zh: "智能变速箱控制，实现平稳换挡",
-        image_url: "../assets/temp.png",
-        sku: "TCU-002",
-        category: "Transmission",
-        category_zh: "变速箱",
+        name: "Steering Angle Sensor",
+        name_zh: "转向角度传感器",
+        description: "High-precision steering wheel position sensor for vehicle stability control",
+        description_zh: "高精度方向盘位置传感器，用于车辆稳定性控制",
+        image_url: "/assets/steering_angle_sensor.png",
+        sku: "SAS-002",
+        category: "Sensors",
+        category_zh: "传感器",
         specifications: {
             voltage: "24V DC",
             temperature: "-30°C to +70°C",
@@ -257,14 +257,14 @@ const localProductsData = [
     },
     {
         id: 3,
-        name: "ABS Control Module",
-        name_zh: "ABS控制模块",
-        description: "Anti-lock braking system for enhanced safety",
-        description_zh: "防抱死制动系统，提升安全性",
-        image_url: "../assets/temp.png",
-        sku: "ABS-003",
-        category: "Safety Systems",
-        category_zh: "安全系统",
+        name: "Height Level Sensor",
+        name_zh: "高度水平传感器",
+        description: "Precise height measurement sensor for vehicle suspension systems",
+        description_zh: "用于车辆悬挂系统的精密高度测量传感器",
+        image_url: "/assets/height_level_sensor.png",
+        sku: "HLS-003",
+        category: "Sensors",
+        category_zh: "传感器",
         specifications: {
             voltage: "12V DC",
             temperature: "-40°C to +85°C",
@@ -297,14 +297,14 @@ const localProductsData = [
     },
     {
         id: 4,
-        name: "Airbag Control Unit",
-        name_zh: "安全气囊控制单元",
-        description: "Comprehensive airbag deployment system",
-        description_zh: "全面的安全气囊展开系统",
-        image_url: "../assets/temp.png",
-        sku: "ACU-004",
-        category: "Safety Systems",
-        category_zh: "安全系统",
+        name: "MAP Sensor",
+        name_zh: "进气歧管压力传感器",
+        description: "Manifold Absolute Pressure sensor for engine management",
+        description_zh: "用于发动机管理的进气歧管绝对压力传感器",
+        image_url: "/assets/oil_level_sensor.png",
+        sku: "MAP-004",
+        category: "Sensors",
+        category_zh: "传感器",
         specifications: {
             voltage: "12V DC",
             temperature: "-40°C to +85°C",
@@ -341,7 +341,7 @@ const localProductsData = [
         name_zh: "转向角度传感器",
         description: "High-precision steering wheel position sensor for vehicle stability control",
         description_zh: "高精度方向盘位置传感器，用于车辆稳定性控制",
-        image_url: "../assets/temp.png",
+        image_url: "/assets/steering_angle_sensor.png",
         sku: "SAS-001",
         category: "Sensors",
         category_zh: "传感器",
@@ -381,7 +381,7 @@ const localProductsData = [
         name_zh: "柴油预热塞控制器",
         description: "Intelligent glow plug control module for diesel engine cold start",
         description_zh: "智能预热塞控制模块，用于柴油发动机冷启动",
-        image_url: "../assets/temp.png",
+        image_url: "/assets/diesel_glow_controller.png",
         sku: "DGPC-001",
         category: "Engine Control",
         category_zh: "发动机控制",
@@ -412,6 +412,46 @@ const localProductsData = [
                 title_zh: "节能",
                 description: "Reduced power consumption",
                 description_zh: "降低功耗"
+            }
+        ]
+    },
+    {
+        id: 7,
+        name: "DPF Sensor",
+        name_zh: "DPF传感器",
+        description: "Diesel Particulate Filter sensor for emission control monitoring",
+        description_zh: "用于排放控制监测的柴油颗粒过滤器传感器",
+        image_url: "/assets/DPF_sensor.png",
+        sku: "DPF-007",
+        category: "Sensors",
+        category_zh: "传感器",
+        specifications: {
+            voltage: "12V DC",
+            temperature: "-40°C to +850°C",
+            protocol: "CAN Bus",
+            certification: "Euro 6"
+        },
+        features: [
+            {
+                icon: "🌱",
+                title: "Emission Control",
+                title_zh: "排放控制",
+                description: "Monitors particulate filter efficiency",
+                description_zh: "监测颗粒过滤器效率"
+            },
+            {
+                icon: "🔥",
+                title: "High Temperature",
+                title_zh: "高温",
+                description: "Withstands extreme exhaust temperatures",
+                description_zh: "承受极端排气温度"
+            },
+            {
+                icon: "📊",
+                title: "Real-time Data",
+                title_zh: "实时数据",
+                description: "Continuous monitoring and reporting",
+                description_zh: "连续监测和报告"
             }
         ]
     }

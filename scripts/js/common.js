@@ -18,7 +18,9 @@ function loadFallback(containerId) {
             <header>
                 <div class="container">
                     <div class="header-left">
-                        <a href="index" class="logo">GW-GoWorld</a>
+                        <a href="index" class="logo">
+                            <img src="/assets/logo.png" alt="GW-GoWorld" class="logo-img">
+                        </a>
                     </div>
                     
                     <div class="header-right">

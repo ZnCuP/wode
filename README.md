@@ -187,10 +187,10 @@ python3 server.py
 启动方式：pkill -f "start_app.py" && nohup python3 start_app.py --host 0.0.0.0 --port 8001 > app.log 2>&1 &
 
 # 查找占用8001端口的进程
-lsof -ti:8001 | xargs kill -9
+
 
 # 1. 杀死所有相关进程
-pkill -f "start_app.py"
+cd /opt/wode && git pull && source venv/bin/activate && lsof -ti:8001 | xargs kill -9 && pkill -f "start_app.py" && nohup python3 start_app.py --host 0.0.0.0 --port 8001 > app.log 2>&1 &
 
 # 2. 确认端口已释放
 lsof -i:8001

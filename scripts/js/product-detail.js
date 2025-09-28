@@ -189,7 +189,7 @@ const localProductsData = [
         name_zh: "柴油预热塞控制器",
         description: "Intelligent glow plug control module for diesel engine cold start",
         description_zh: "柴油发动机冷启动的智能预热塞控制模块",
-        image_url: "assets/diesel_glow_controller.png",
+        image_url: "/assets/diesel_glow_controller.png",
         sku: "DCPC-001",
         category: "Controllers",
         category_zh: "控制器",
