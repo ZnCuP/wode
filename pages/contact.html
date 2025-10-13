@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate="contactPageTitle">Contact Us - GW-GoWorld</title>
-    <link rel="stylesheet" href="../styles/css/common.css">
-    <link rel="stylesheet" href="../styles/css/language.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Roboto+Condensed:ital,wght@0,400;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="../style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../styles/css/common.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../styles/css/language.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Roboto+Condensed:ital,wght@0,400;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <noscript>
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../styles/css/common.css">
+        <link rel="stylesheet" href="../styles/css/language.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Roboto+Condensed:ital,wght@0,400;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
 </head>
 <body>
     <!-- 公共头部容器 -->
@@ -25,7 +35,7 @@
                 <p class="certifications-description" data-translate="certificationsDesc">Our company has been awarded TS certification</p>
                 
                 <div class="certification-display">
-                    <img src="../assets/certification.png" alt="TS Certification" class="certification-image">
+                    <img src="../assets/certification.png" alt="TS Certification" class="certification-image" loading="lazy">
                 </div>
             </div>
         </section>
@@ -36,7 +46,7 @@
                 
                 <div class="contact-layout">
                     <div class="contact-image">
-                        <img src="../assets/contact-image.png" alt="Contact Us">
+                        <img src="../assets/contact-image.png" alt="Contact Us" loading="lazy">
                     </div>
                     <div class="contact-details">
                         <h3 class="contact-subtitle" data-translate="contactSubtitle">CONTACT</h3>
@@ -97,8 +107,8 @@
     <div id="footer-container"></div>
 
     <!-- 加载公共组件的脚本 -->
-    <script src="../scripts/js/common.js"></script>
-    <script src="../scripts/js/language.js"></script>
-    <script src="../scripts/js/contact.js"></script>
+    <script defer src="../scripts/js/common.js"></script>
+    <script defer src="../scripts/js/language.js"></script>
+    <script defer src="../scripts/js/contact.js"></script>
 </body>
 </html>

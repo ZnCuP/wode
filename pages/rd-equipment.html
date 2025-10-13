@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>R&D and Equipment - GW-GoWorld</title>
-    <link rel="stylesheet" href="../styles/css/common.css">
-    <link rel="stylesheet" href="../styles/css/language.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="../style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../styles/css/common.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../styles/css/language.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <noscript>
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../styles/css/common.css">
+        <link rel="stylesheet" href="../styles/css/language.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&display=swap" rel="stylesheet">
+    </noscript>
 </head>
 <body>
     <!-- 公共头部容器 -->
@@ -47,7 +57,7 @@
 
                     <!-- 右侧：测试设备图片 -->
                     <div class="rd-image-content">
-                        <img src="../assets/testing.png" alt="Testing Equipment" class="testing-equipment-image">
+                        <img src="../assets/testing.png" alt="Testing Equipment" class="testing-equipment-image" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -127,7 +137,7 @@
                             <p class="engineering-description" data-translate="productionLinesDesc">By integrating fully-automatic and semi-automatic production equipments,we build intelligent production lines to realize efficient, precise and stable production processes, thus significantly enhancing our competitiveness.</p>
                         </div>
                         <div class="engineering-image">
-                            <img src="../assets/1.png" alt="Engineering and Innovation" class="section-image">
+                            <img src="../assets/1.png" alt="Engineering and Innovation" class="section-image" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -138,7 +148,7 @@
                 <div class="container">
                     <div class="engineering-grid">
                         <div class="engineering-image">
-                            <img src="../assets/2.png" alt="Intelligent Control System" class="section-image">
+                            <img src="../assets/2.png" alt="Intelligent Control System" class="section-image" loading="lazy">
                         </div>
                         <div class="engineering-text">
                             <h2 class="engineering-title" data-translate="intelligentSystemTitle">INTELLIGENT CONTROL SYSTEM</h2>
@@ -157,7 +167,7 @@
                             <p class="engineering-description" data-translate="warehouseDesc">Efficient storage solution: A combination of blue plastic crates and metal shelves is used to achieve efficient classification and storage of items.Clear labeling system: The S2 area is used for storing specific product categories, making it easy to quickly locate and manage.Clean and organized environment: Clean floor and sufficient light create a good working atmosphere.</p>
                         </div>
                         <div class="engineering-image">
-                            <img src="../assets/3.png" alt="Warehouse Management" class="section-image">
+                            <img src="../assets/3.png" alt="Warehouse Management" class="section-image" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -168,7 +178,7 @@
                 <div class="container">
                     <div class="engineering-grid">
                         <div class="engineering-image">
-                            <img src="../assets/4.png" alt="Electronic Equipment Storage Rack" class="section-image">
+                            <img src="../assets/4.png" alt="Electronic Equipment Storage Rack" class="section-image" loading="lazy">
                         </div>
                         <div class="engineering-text">
                             <h2 class="engineering-title" data-translate="electronicStorageTitle">Electronic Equipment Storage Rack</h2>
@@ -187,7 +197,7 @@
                             <p class="engineering-description" data-translate="electronicStorageDesc2">Professional-grade design: Black metal frame structure is sturdy and durable, suitable for long time use. Modular Layout: Compartment size can be adjusted as needed to flexibly accommodate different sizes of electronic equipment and accessories. Safety Protection Measures: All wires are neatly arranged in the designated location to minimize potential safety hazards.</p>
                         </div>
                         <div class="engineering-image">
-                            <img src="../assets/5.png" alt="Electronic Equipment Storage Rack" class="section-image">
+                            <img src="../assets/5.png" alt="Electronic Equipment Storage Rack" class="section-image" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -200,7 +210,7 @@
                 <h2 class="our-service-title" data-translate="ourServiceTitle">OUR SERVICE</h2>
                 <div class="service-content">
                     <div class="service-image">
-                        <img src="../assets/worker.png" alt="Service" />
+                        <img src="../assets/worker.png" alt="Service" loading="lazy">
                     </div>
                     <div class="service-text">
                         <ul>
@@ -270,7 +280,7 @@
     <div id="footer-container"></div>
 
     <!-- 加载公共组件的脚本 -->
-    <script src="../scripts/js/common.js"></script>
-    <script src="../scripts/js/language.js"></script>
+    <script defer src="../scripts/js/common.js"></script>
+    <script defer src="../scripts/js/language.js"></script>
 </body>
 </html>

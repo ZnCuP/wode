@@ -7,11 +7,12 @@ from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from fastapi.middleware.gzip import GZipMiddleware
 from sqlalchemy.orm import Session
 from typing import List, Optional
 import os
 from dotenv import load_dotenv
-from pathlib import Path
+from starlette.responses import Response
 
 # 假设您的项目结构和依赖导入保持不变
 from .database import get_db, engine
@@ -31,6 +32,9 @@ app = FastAPI(
     description="汽车零配件管理系统API",
     version="1.0.0"
 )
+
+# 启用 GZip 压缩以减小响应体积
+app.add_middleware(GZipMiddleware, minimum_size=512)
 
 # 配置 CORS
 app.add_middleware(
@@ -53,15 +57,46 @@ styles_path = os.path.join(project_root, "styles")
 scripts_path = os.path.join(project_root, "scripts")
 templates_path = os.path.join(project_root, "templates")
 
+
+class CacheControlStaticFiles(StaticFiles):
+    """为静态资源响应添加缓存标头以提升重复访问速度。"""
+
+    def __init__(self, *args, cache_seconds: int = 31536000, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.cache_seconds = cache_seconds
+
+    async def get_response(self, path: str, scope):  # type: ignore[override]
+        response = await super().get_response(path, scope)
+        if response.status_code == 200:
+            response.headers.setdefault(
+                "Cache-Control",
+                f"public, max-age={self.cache_seconds}, immutable"
+            )
+        return response
+
 # 检查路径是否存在，避免启动报错
 if os.path.isdir(assets_path):
-    app.mount("/assets", StaticFiles(directory=assets_path), name="assets")
+    app.mount("/assets", CacheControlStaticFiles(directory=assets_path), name="assets")
 if os.path.isdir(styles_path):
-    app.mount("/styles", StaticFiles(directory=styles_path), name="styles")
+    app.mount(
+        "/styles",
+        CacheControlStaticFiles(directory=styles_path, cache_seconds=86400),
+        name="styles",
+    )
 if os.path.isdir(scripts_path):
-    app.mount("/scripts", StaticFiles(directory=scripts_path), name="scripts")
+    app.mount("/scripts", CacheControlStaticFiles(directory=scripts_path), name="scripts")
 if os.path.isdir(templates_path):
-    app.mount("/templates", StaticFiles(directory=templates_path), name="templates")
+    app.mount("/templates", CacheControlStaticFiles(directory=templates_path), name="templates")
+
+
+def _serve_html(path: str) -> Response:
+    if os.path.exists(path):
+        response = FileResponse(path)
+        response.headers.setdefault("Cache-Control", "no-cache, no-store, must-revalidate")
+        response.headers.setdefault("Pragma", "no-cache")
+        response.headers.setdefault("Expires", "0")
+        return response
+    raise HTTPException(status_code=404, detail="Page not found")
 
 # ----------------------------------------------------
 # 前端页面路由 - 按优先级排序 (特定在前，通用在后)
@@ -82,7 +117,9 @@ async def serve_style_css():
     """提供主样式文件"""
     file_path = os.path.join(project_root, "style.css")
     if os.path.exists(file_path):
-        return FileResponse(file_path)
+        response = FileResponse(file_path)
+        response.headers.setdefault("Cache-Control", "public, max-age=86400")
+        return response
     raise HTTPException(status_code=404, detail="style.css not found")
 
 # 3. 优先级高：主页路由
@@ -91,9 +128,9 @@ async def serve_index():
     """提供主页：/ 自动加载 pages/index.html"""
     page_path = os.path.join(project_root, "pages", "index.html")
     if os.path.exists(page_path):
-        return FileResponse(page_path)
+        return _serve_html(page_path)
     # 兼容项目根目录下的 index.html
-    return FileResponse(os.path.join(project_root, "index.html"))
+    return _serve_html(os.path.join(project_root, "index.html"))
 
 # 4. 优先级中：兼容旧链接的路由
 @app.get("/pages/{page_name}")
@@ -101,7 +138,7 @@ async def serve_page(page_name: str):
     """提供页面文件 (兼容 /pages/xxx.html 这种旧链接)"""
     page_path = os.path.join(project_root, "pages", page_name)
     if os.path.exists(page_path) and page_name.endswith('.html'):
-        return FileResponse(page_path)
+        return _serve_html(page_path)
     raise HTTPException(status_code=404, detail="Page not found")
 
 # 5. 优先级低：通用页面路由 (实现 URL 简洁化)
@@ -124,13 +161,13 @@ async def serve_clean_page(page_alias: str):
     
     # 2. 检查文件是否存在
     if os.path.exists(page_path):
-        return FileResponse(page_path)
+        return _serve_html(page_path)
     
     # 3. 容错：如果请求本身带有 .html (尽管不应该发生)
     if page_alias.endswith('.html'):
         page_path_direct = os.path.join(project_root, "pages", page_alias)
         if os.path.exists(page_path_direct):
-             return FileResponse(page_path_direct)
+            return _serve_html(page_path_direct)
     
     raise HTTPException(status_code=404, detail="Page not found")
 

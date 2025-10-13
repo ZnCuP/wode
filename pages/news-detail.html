@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Article Detail - GW-GoWorld</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../styles/css/common.css">
-    <link rel="stylesheet" href="../styles/css/language.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="../style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../styles/css/common.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../styles/css/language.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <noscript>
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../styles/css/common.css">
+        <link rel="stylesheet" href="../styles/css/language.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
 </head>
 <body>
     <!-- 公共头部容器 -->
@@ -60,9 +69,9 @@
     <div id="footer-container"></div>
 
     <!-- 加载公共组件的脚本 -->
-    <script src="../scripts/js/config.js"></script>
-    <script src="../scripts/js/language.js"></script>
-    <script src="../scripts/js/common.js"></script>
-    <script src="../scripts/js/news-detail.js"></script>
+    <script defer src="../scripts/js/config.js"></script>
+    <script defer src="../scripts/js/language.js"></script>
+    <script defer src="../scripts/js/common.js"></script>
+    <script defer src="../scripts/js/news-detail.js"></script>
 </body>
 </html>

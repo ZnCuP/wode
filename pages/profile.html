@@ -5,10 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Go-World Profile - GW-GoWorld</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../styles/css/common.css">
-    <link rel="stylesheet" href="../styles/css/language.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="../style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../styles/css/common.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../styles/css/language.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <noscript>
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../styles/css/common.css">
+        <link rel="stylesheet" href="../styles/css/language.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
 </head>
 
 <body>
@@ -51,7 +60,7 @@
                     <h2 class="engineering-title" data-translate="engineeringExcellence">Engineering Excellence</h2>
                     <p class="engineering-description" data-translate="engineeringDescription">Through continuous innovation and advanced manufacturing processes, we maintain the highest standards of quality and precision in every component we produce. Our state-of-the-art facilities and experienced engineering team ensure that each product meets or exceeds industry specifications.</p>
                     <div class="engineering-video">
-                        <video controls poster="../assets/company.png">
+                        <video controls poster="../assets/company.png" preload="none">
                             <source src="../assets/videos/engineering.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -81,7 +90,7 @@
                     <div class="history-details">
                         <h3 class="history-event" data-translate="historyEvent2008">Company founded with producing oil level sensor</h3>
                         <div class="history-image">
-                            <img src="../assets/temp.png" alt="Company History Image">
+                            <img src="../assets/temp.png" alt="Company History Image" loading="lazy">
                         </div>
                         <p class="history-description" data-translate="historyDescription2008">The Foundation Go-World was established with a focus on precision-engineered oil level sensors, laying the groundwork for our expertise in automotive sensing solutions.</p>
                     </div>
@@ -93,8 +102,8 @@
         <div id="footer-container"></div>
 
         <!-- 加载公共组件的脚本 -->
-        <script src="../scripts/js/common.js"></script>
-        <script src="../scripts/js/language.js"></script>
+    <script defer src="../scripts/js/common.js"></script>
+    <script defer src="../scripts/js/language.js"></script>
 </body>
 
 </html>

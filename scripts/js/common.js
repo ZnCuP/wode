@@ -1,9 +1,27 @@
+// 简单的内存缓存，避免同一组件重复解析
+const componentCache = new Map();
+
 // 公共组件加载函数
 async function loadComponent(file, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) {
+        return;
+    }
+
     try {
-        const response = await fetch(file);
+        if (componentCache.has(file)) {
+            container.innerHTML = componentCache.get(file);
+            return;
+        }
+
+        const response = await fetch(file, { cache: 'force-cache' });
+        if (!response.ok) {
+            throw new Error(`Failed to fetch ${file}: ${response.status}`);
+        }
+
         const html = await response.text();
-        document.getElementById(containerId).innerHTML = html;
+        componentCache.set(file, html);
+        container.innerHTML = html;
     } catch (error) {
         console.error('Error loading component:', error);
         // 如果无法加载，显示错误信息或使用备用内容
@@ -13,7 +31,7 @@ async function loadComponent(file, containerId) {
 
 // 备用内容函数（在无法加载外部文件时使用）
 function loadFallback(containerId) {
-    if (containerId === 'header-container') {
+    if (containerId === 'header-container' || containerId === 'header-placeholder') {
         document.getElementById(containerId).innerHTML = `
             <header>
                 <div class="container">
@@ -62,7 +80,7 @@ function loadFallback(containerId) {
                 </div>
             </header>
         `;
-    } else if (containerId === 'footer-container') {
+    } else if (containerId === 'footer-container' || containerId === 'footer-placeholder') {
         document.getElementById(containerId).innerHTML = `
             <footer>
                 <div class="container">
@@ -352,24 +370,32 @@ function initSmoothScroll() {
 }
 
 // 页面加载完成后初始化所有功能
-document.addEventListener('DOMContentLoaded', function() {
-    // 加载公共组件
-    if (document.getElementById('header-container')) {
-        loadComponent('../templates/includes/header.html', 'header-container');
-    }
-    if (document.getElementById('footer-container')) {
-        loadComponent('../templates/includes/footer.html', 'footer-container');
-    }
-    
-    // 直接初始化功能，不需要加载外部模板
-    setTimeout(() => {
+document.addEventListener('DOMContentLoaded', async function() {
+    const componentPromises = [];
+
+    const headerTargets = ['header-container', 'header-placeholder'];
+    headerTargets.forEach(id => {
+        if (document.getElementById(id)) {
+            componentPromises.push(loadComponent('../templates/includes/header.html', id));
+        }
+    });
+
+    const footerTargets = ['footer-container', 'footer-placeholder'];
+    footerTargets.forEach(id => {
+        if (document.getElementById(id)) {
+            componentPromises.push(loadComponent('../templates/includes/footer.html', id));
+        }
+    });
+
+    await Promise.all(componentPromises);
+
+    const runInitializers = () => {
         initMobileMenu();
         initScrollHeader();
         initPageAnimations();
         initSmoothScroll();
         initFooterDropdowns();
-        
-        // 初始化语言切换功能
+
         if (typeof initLanguageSwitcher === 'function') {
             initLanguageSwitcher();
         }
@@ -377,13 +403,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentLang = localStorage.getItem('language') || 'en';
             switchLanguage(currentLang);
         }
-        
-        // 初始化Corporate History年份切换功能
+
         initHistoryYearSwitcher();
-        
-        // 增强下拉菜单用户体验
         enhanceDropdownMenus();
-    }, 100); // 稍微延迟以确保组件已加载
+    };
+
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(runInitializers, { timeout: 500 });
+    } else {
+        setTimeout(runInitializers, 0);
+    }
 });
 
 // Corporate History年份切换功能
