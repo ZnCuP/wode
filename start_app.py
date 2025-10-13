@@ -9,6 +9,8 @@ import sys
 import subprocess
 from pathlib import Path
 
+# 不再需要从 dotenv 导入 load_dotenv
+
 def check_requirements():
     """检查必要的依赖"""
     try:
@@ -23,7 +25,7 @@ def check_requirements():
         return False
 
 def check_env_file():
-    """检查环境配置文件"""
+    """检查环境配置文件，如果 .env 不存在，则从 .env.example 复制"""
     env_file = Path(".env")
     env_example = Path(".env.example")
     
@@ -74,7 +76,7 @@ def main():
     if not check_requirements():
         sys.exit(1)
     
-    # 检查环境配置
+    # 检查环境配置（确保 .env 文件存在或被创建）
     if not check_env_file():
         sys.exit(1)
     
