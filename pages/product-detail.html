@@ -10,324 +10,98 @@
     <link rel="preload" href="../style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="../styles/css/common.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="../styles/css/language.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../styles/css/product-detail.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
     <noscript>
         <link rel="stylesheet" href="../style.css">
         <link rel="stylesheet" href="../styles/css/common.css">
         <link rel="stylesheet" href="../styles/css/language.css">
+        <link rel="stylesheet" href="../styles/css/product-detail.css">
     </noscript>
-    <style>
-        .product-detail-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .product-detail-header {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .product-image-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 2rem;
-            min-height: 400px;
-        }
-
-        .product-image {
-            max-width: 100%;
-            max-height: 350px;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        .product-info-section {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .product-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .product-sku {
-            font-size: 1rem;
-            color: #7f8c8d;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .product-description {
-            font-size: 1.2rem;
-            color: #34495e;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .product-specs {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .specs-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        .spec-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .spec-item:last-child {
-            border-bottom: none;
-        }
-
-        .spec-label {
-            font-weight: 500;
-            color: #495057;
-        }
-
-        .spec-value {
-            color: #6c757d;
-        }
-
-        .product-features {
-            margin-top: 3rem;
-        }
-
-        .features-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .feature-card {
-            background: #fff;
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            border-color: #007bff;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .feature-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-description {
-            color: #6c757d;
-            line-height: 1.5;
-        }
-
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #6c757d;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-            margin-bottom: 2rem;
-        }
-
-        .back-button:hover {
-            background: #5a6268;
-            color: white;
-            text-decoration: none;
-        }
-
-        .loading-spinner {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 400px;
-            font-size: 1.2rem;
-            color: #6c757d;
-        }
-
-        .error-message {
-            text-align: center;
-            color: #dc3545;
-            font-size: 1.2rem;
-            padding: 2rem;
-        }
-
-        /* 移动端响应式 */
-        @media (max-width: 768px) {
-            .product-detail-container {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-
-            .product-detail-header {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .product-title {
-                font-size: 2rem;
-            }
-
-            .product-image-section {
-                min-height: 300px;
-                padding: 1.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .feature-card {
-                padding: 1.25rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .product-detail-container {
-                margin: 0.5rem;
-                padding: 1rem;
-            }
-
-            .product-title {
-                font-size: 1.8rem;
-            }
-
-            .product-description {
-                font-size: 1.1rem;
-            }
-
-            .features-title {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Header -->
-    <div id="header-placeholder"></div>
+    <div id="header-container"></div>
 
     <!-- Main Content -->
-    <main class="main-content">
-        <div class="product-detail-container">
-            <!-- Loading State -->
-            <div id="loading" class="loading-spinner">
-                <span data-translate="loading">Loading...</span>
-            </div>
+    <main class="product-detail-main">
+        <div id="loading" class="product-loading">
+            <span data-translate="loading">Loading...</span>
+        </div>
 
-            <!-- Error State -->
-            <div id="error" class="error-message" style="display: none;">
-                <span data-translate="productNotFound">Product not found</span>
-            </div>
+        <div id="error" class="product-error" style="display: none;">
+            <span data-translate="productNotFound">Product not found</span>
+        </div>
 
-            <!-- Product Detail Content -->
-            <div id="product-content" style="display: none;">
-                <!-- Back Button -->
-                <a href="products.html" class="back-button">
-                    <span>←</span>
-                    <span data-translate="backToProducts">Back to Products</span>
-                </a>
-
-                <!-- Product Header -->
-                <div class="product-detail-header">
-                    <div class="product-image-section">
-                        <img id="product-image" src="" alt="" class="product-image">
-                    </div>
-                    <div class="product-info-section">
-                        <h1 id="product-title" class="product-title"></h1>
-                        <div id="product-sku" class="product-sku"></div>
-                        <p id="product-description" class="product-description"></p>
-                        
-                        <!-- Product Specifications -->
-                        <div class="product-specs">
-                            <h3 class="specs-title" data-translate="specifications">Specifications</h3>
-                            <div class="spec-item">
-                                <span class="spec-label" data-translate="category">Category:</span>
-                                <span id="product-category" class="spec-value"></span>
+        <div id="product-content" class="product-detail-shell" style="display: none;">
+            <section class="product-hero">
+                <div class="container">
+                    <div class="product-hero__layout">
+                        <div class="product-hero__info">
+                            <a href="products.html" class="product-hero__back">
+                                <span aria-hidden="true">←</span>
+                                <span data-translate="backToProducts">Back to Products</span>
+                            </a>
+                            <div id="product-category" class="product-hero__badge"></div>
+                            <h1 id="product-title" class="product-hero__title"></h1>
+                            <p id="product-subtitle" class="product-hero__subtitle"></p>
+                            <div class="product-hero__meta">
+                                <span id="product-sku" class="product-hero__meta-item"></span>
+                                <span class="product-hero__meta-item">
+                                    <span data-translate="status">Status:</span>
+                                    <span id="product-status" data-translate="available">Available</span>
+                                </span>
                             </div>
-                            <div class="spec-item">
-                                <span class="spec-label" data-translate="sku">SKU:</span>
-                                <span id="product-sku-spec" class="spec-value"></span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-label" data-translate="status">Status:</span>
-                                <span id="product-status" class="spec-value" data-translate="available">Available</span>
+                        </div>
+                        <div class="product-hero__visual">
+                            <div class="product-hero__image-shell">
+                                <img id="product-image" src="" alt="" class="product-hero__image">
                             </div>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Product Features -->
-                <div class="product-features">
-                    <h2 class="features-title" data-translate="keyFeatures">Key Features</h2>
-                    <div id="features-grid" class="features-grid">
-                        <!-- Features will be dynamically generated -->
+            <section class="product-specs-section">
+                <div class="container">
+                    <div class="product-specs-card">
+                        <h2 data-translate="technicalOverview">Technical Overview</h2>
+                        <p id="product-description" class="product-specs-card__intro"></p>
+                        <div class="product-specs-grid" id="product-spec-grid"></div>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            <section class="product-features-section">
+                <div class="container">
+                    <h2 data-translate="productFeatureHeading">Key Differentiators</h2>
+                    <div id="features-grid" class="product-feature-grid"></div>
+                </div>
+            </section>
+
+            <section class="product-insights">
+                <div class="container">
+                    <div class="product-insights__grid">
+                        <div class="product-insights__block" id="product-applications-block">
+                            <h3 data-translate="productApplicationsHeading">Validated Applications</h3>
+                            <ul id="product-applications" class="product-insights__list"></ul>
+                        </div>
+                        <div class="product-insights__block" id="product-compliance-block">
+                            <h3 data-translate="productComplianceHeading">Compliance &amp; Testing</h3>
+                            <ul id="product-compliance" class="product-insights__list"></ul>
+                        </div>
+                        <div class="product-insights__block" id="product-support-block">
+                            <h3 data-translate="productSupportHeading">Support Program</h3>
+                            <ul id="product-support" class="product-insights__list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 
     <!-- Footer -->
-    <div id="footer-placeholder"></div>
+    <div id="footer-container"></div>
 
     <!-- Scripts -->
     <script defer src="../scripts/js/config.js"></script>

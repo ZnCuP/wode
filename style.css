@@ -1,109 +1,202 @@
+/* Futuristic theme primitives */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700&display=swap');
+
+:root {
+    --color-page-bg: #f7f9ff;
+    --color-page-bg-alt: #ffffff;
+    --color-base-text: #1d284a;
+    --color-base-muted: #56627d;
+    --color-bg: #f4f6ff;
+    --color-bg-2: #ecf1ff;
+    --color-surface: rgba(255, 255, 255, 0.94);
+    --color-surface-alt: rgba(244, 248, 255, 0.96);
+    --color-border: rgba(96, 126, 204, 0.18);
+    --color-text: #18203f;
+    --color-text-muted: #53607c;
+    --accent: #3dd5f3;
+    --accent-strong: #7b61ff;
+    --accent-soft: rgba(61, 213, 243, 0.18);
+    --shadow-lg: 0 28px 60px rgba(35, 58, 124, 0.16);
+    --shadow-md: 0 20px 45px rgba(35, 58, 124, 0.14);
+    --shadow-sm: 0 14px 28px rgba(35, 58, 124, 0.12);
+    --backdrop-blur: blur(22px);
+    --transition-snappy: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* 页面特定样式 - 不包含头部底部样式 */
 
 /* 基础页面样式 */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #f8f9fa;
+    color: var(--color-text);
+    background: linear-gradient(160deg, rgba(249, 251, 255, 1) 0%, rgba(238, 242, 255, 0.96) 48%, rgba(245, 248, 255, 1) 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: linear-gradient(90deg, rgba(120, 148, 225, 0.12) 1px, transparent 1px),
+                      linear-gradient(0deg, rgba(120, 148, 225, 0.12) 1px, transparent 1px);
+    background-size: 160px 160px;
+    opacity: 0.2;
+    z-index: -2;
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 18% 78%, rgba(61, 213, 243, 0.18), transparent 60%),
+                radial-gradient(circle at 82% 30%, rgba(123, 97, 255, 0.16), transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+    mix-blend-mode: screen;
 }
 
 /* 主要内容区域 */
 main {
     min-height: calc(100vh - 200px);
-    padding: 40px 0;
+    padding: 60px 0;
+    position: relative;
+    z-index: 1;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 1;
 }
 
 /* 标题样式 */
 h1, h2, h3, h4, h5, h6 {
     margin-bottom: 20px;
-    color: #2c3e50;
+    color: var(--color-base-text);
+    font-family: 'Orbitron', 'Inter', sans-serif;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 14px rgba(123, 97, 255, 0.18);
 }
 
 h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 2.8rem;
+    font-weight: 600;
 }
 
 h2 {
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 2.2rem;
+    font-weight: 500;
 }
 
 h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.6rem;
+    font-weight: 500;
 }
 
 /* 段落样式 */
 p {
     margin-bottom: 15px;
-    line-height: 1.6;
+    line-height: 1.7;
+    color: var(--color-text-muted);
 }
 
 /* 链接样式 */
 a {
-    color: #007bff;
+    color: var(--accent);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s var(--transition-snappy), text-shadow 0.3s var(--transition-snappy);
 }
 
 a:hover {
-    color: #0056b3;
+    color: var(--accent-strong);
+    text-shadow: 0 0 12px rgba(61, 213, 243, 0.45);
 }
 
 /* 按钮样式 */
 .btn {
     display: inline-block;
-    padding: 12px 24px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
+    padding: 14px 28px;
+    background: linear-gradient(120deg, rgba(61, 213, 243, 0.85), rgba(123, 97, 255, 0.85));
+    color: #ffffff;
+    border: 1px solid rgba(61, 213, 243, 0.6);
+    border-radius: 999px;
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: transform 0.35s var(--transition-snappy), box-shadow 0.35s var(--transition-snappy);
     font-size: 16px;
+    letter-spacing: 0.05em;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(61, 213, 243, 0.25);
 }
 
 .btn:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 45px rgba(61, 213, 243, 0.35);
 }
 
 .btn-secondary {
-    background-color: #6c757d;
+    background: linear-gradient(120deg, rgba(10, 20, 40, 0.9), rgba(24, 36, 70, 0.95));
+    border-color: rgba(123, 97, 255, 0.45);
+    color: #ffffff;
 }
 
 .btn-secondary:hover {
-    background-color: #545b62;
+    box-shadow: 0 20px 45px rgba(123, 97, 255, 0.3);
 }
 
 /* 卡片样式 */
 .card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 30px;
+    background: linear-gradient(145deg, var(--color-surface), var(--color-surface-alt));
+    border-radius: 18px;
+    box-shadow: var(--shadow-sm);
+    padding: 32px;
     margin-bottom: 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s var(--transition-snappy), box-shadow 0.4s var(--transition-snappy);
+    border: 1px solid var(--color-border);
+    backdrop-filter: var(--backdrop-blur);
+    position: relative;
+    overflow: hidden;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    pointer-events: none;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(61, 213, 243, 0.2), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.4s var(--transition-snappy);
+    pointer-events: none;
+}
+
+.card:hover::after {
+    opacity: 1;
 }
 
 /* 网格布局 */
 .grid {
     display: grid;
-    gap: 30px;
+    gap: 36px;
 }
 
 .grid-2 {
@@ -164,28 +257,29 @@ a:hover {
 img {
     max-width: 100%;
     height: auto;
+    filter: saturate(1.05) contrast(1.02);
 }
 
 /* 移动端响应式 */
 @media (max-width: 768px) {
     main {
-        padding: 20px 0;
+        padding: 40px 0;
     }
     
     h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
     
     h2 {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
     }
     
     .card {
-        padding: 20px;
+        padding: 26px;
     }
     
     .grid {
-        gap: 20px;
+        gap: 28px;
     }
 }
 
@@ -199,7 +293,7 @@ img {
     }
     
     .card {
-        padding: 15px;
+        padding: 20px;
     }
 }
 
@@ -213,54 +307,57 @@ img {
 }
 
 .filter-btn {
-    background-color: transparent;
-    color: #333;
-    border: 2px solid #ddd;
-    padding: 10px 20px;
-    font-size: 14px;
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--color-text);
+    border: 1px solid rgba(130, 168, 255, 0.35);
+    padding: 10px 22px;
+    font-size: 13px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 25px;
+    transition: transform 0.3s var(--transition-snappy), color 0.3s var(--transition-snappy), box-shadow 0.3s var(--transition-snappy);
+    border-radius: 999px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.12em;
+    box-shadow: 0 12px 26px rgba(152, 172, 232, 0.18);
 }
 
 .filter-btn:hover {
-    border-color: #333;
-    background-color: #f8f9fa;
+    transform: translateY(-3px);
+    color: var(--accent-strong);
+    box-shadow: 0 18px 36px rgba(142, 165, 230, 0.25);
 }
 
 .filter-btn.active {
-    background-color: #333;
-    color: white;
-    border-color: #333;
+    background: linear-gradient(120deg, rgba(61, 213, 243, 0.85), rgba(123, 97, 255, 0.85));
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 20px 40px rgba(123, 97, 255, 0.32);
 }
 
 .loading {
     text-align: center;
     padding: 60px 20px;
     font-size: 18px;
-    color: #666;
+    color: var(--color-text-muted);
 }
 
 .no-products {
     text-align: center;
     padding: 60px 20px;
     font-size: 18px;
-    color: #666;
+    color: var(--color-text-muted);
 }
 
 .product-price {
     font-size: 18px;
     font-weight: 600;
-    color: #e74c3c;
+    color: #ff6f9c;
     margin: 10px 0;
 }
 
 .product-sku {
     font-size: 12px;
-    color: #666;
+    color: var(--color-text-muted);
     margin: 5px 0;
     text-transform: uppercase;
 }
@@ -268,20 +365,20 @@ img {
 /* 响应式设计 */
 @media (max-width: 768px) {
     .category-filter {
-        gap: 10px;
-        margin: 20px 0;
+        gap: 12px;
+        margin: 24px 0;
     }
     
     .filter-btn {
-        padding: 8px 16px;
+        padding: 9px 18px;
         font-size: 12px;
     }
 }
 
 @media (max-width: 480px) {
     .category-filter {
-        gap: 8px;
-        margin: 15px 0;
+        gap: 10px;
+        margin: 18px 0;
     }
     
     .filter-btn {

@@ -128,8 +128,22 @@ function loadFallback(containerId) {
 
 // 移动端菜单切换功能
 function initMobileMenu() {
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
+    let mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    let mobileMenu = document.getElementById('mobileMenu');
+    const headerRight = document.querySelector('header .header-right');
+    if (!mobileMenuToggle && headerRight) {
+        const newToggle = document.createElement('button');
+        newToggle.className = 'mobile-menu-toggle';
+        newToggle.id = 'mobileMenuToggle';
+        newToggle.type = 'button';
+        newToggle.setAttribute('aria-label', 'Toggle navigation');
+        for (let i = 0; i < 3; i += 1) {
+            newToggle.appendChild(document.createElement('span'));
+        }
+        headerRight.insertBefore(newToggle, headerRight.firstChild);
+        mobileMenuToggle = newToggle;
+        mobileMenu = document.getElementById('mobileMenu');
+    }
     const glassOverlay = document.getElementById('glassOverlay');
     
     if (mobileMenuToggle && mobileMenu) {
