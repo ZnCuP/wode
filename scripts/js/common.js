@@ -37,7 +37,7 @@ function loadFallback(containerId) {
                 <div class="container">
                     <div class="header-left">
                         <a href="index" class="logo">
-                            <img src="/assets/logo.png" alt="GW-GoWorld" class="logo-img">
+                            <img src="/assets/footer-logo.png" alt="GW-GoWorld" class="logo-img">
                         </a>
                     </div>
                     

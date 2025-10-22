@@ -21,6 +21,8 @@ body {
 
 :root {
     --header-height: 70px;
+    --brand-primary: rgb(1, 51, 103);
+    --brand-primary-rgb: 1, 51, 103;
 }
 
 main {
@@ -55,12 +57,12 @@ main.home-main {
 /* ============ HEADER 样式 - 按照设计图重新构建 ============ */
 header {
     /* 液态玻璃效果背景 */
-    background: linear-gradient(135deg, 
-        rgba(103, 103, 103, 0.85) 0%, 
-        rgba(103, 103, 103, 0.9) 25%, 
-        rgba(103, 103, 103, 0.85) 50%, 
-        rgba(103, 103, 103, 0.9) 75%, 
-        rgba(103, 103, 103, 0.85) 100%);
+    background: linear-gradient(135deg,
+        rgba(1, 51, 103, 0.82) 0%,
+        rgba(1, 51, 103, 0.88) 25%,
+        rgba(1, 51, 103, 0.86) 50%,
+        rgba(1, 51, 103, 0.92) 75%,
+        rgba(1, 51, 103, 0.88) 100%);
     
     /* 玻璃模糊效果 */
     backdrop-filter: blur(20px) saturate(180%);
@@ -130,12 +132,12 @@ header::before {
 
 /* 滚动时的液态玻璃效果增强 */
 header.scrolled {
-    background: linear-gradient(135deg, 
-        rgba(103, 103, 103, 0.9) 0%, 
-        rgba(103, 103, 103, 0.95) 25%, 
-        rgba(103, 103, 103, 0.9) 50%, 
-        rgba(103, 103, 103, 0.95) 75%, 
-        rgba(103, 103, 103, 0.9) 100%);
+    background: linear-gradient(135deg,
+        rgba(1, 51, 103, 0.9) 0%,
+        rgba(1, 51, 103, 0.94) 25%,
+        rgba(1, 51, 103, 0.9) 50%,
+        rgba(1, 51, 103, 0.95) 75%,
+        rgba(1, 51, 103, 0.9) 100%);
     backdrop-filter: blur(25px) saturate(200%);
     -webkit-backdrop-filter: blur(25px) saturate(200%);
     box-shadow: 
@@ -159,7 +161,7 @@ header .container {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    height: 40px;
+    height: 54px;
 }
 
 .hero {
@@ -175,7 +177,7 @@ header .container {
 }
 
 .logo-img {
-    height: 40px;
+    height: 54px;
     width: auto;
 }
 
@@ -195,7 +197,7 @@ header .container {
     display: flex;
     align-items: center;
     gap: 30px;
-    height: 40px;
+    height: 54px;
 }
 
 /* 移动端菜单按钮 */
@@ -474,7 +476,7 @@ nav ul li a:hover {
         top: 100%;
         left: 0;
         right: 0;
-        background-color: rgb(103, 103, 103);
+        background-color: rgba(1, 51, 103, 0.94);
         flex-direction: column;
         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         padding: 20px;
@@ -604,7 +606,7 @@ footer {
     display: block;
 }
 
-.company-description {
+.footer-left .company-description {
     font-size: 15px;
     line-height: 1.7;
     margin-bottom: 25px;
@@ -1001,7 +1003,7 @@ footer {
 }
 
 .load-more-btn {
-    background: linear-gradient(115deg, rgba(61, 213, 243, 0.85), rgba(123, 97, 255, 0.85));
+    background: linear-gradient(115deg, rgba(var(--brand-primary-rgb), 0.92), rgba(var(--brand-primary-rgb), 0.82));
     color: #ffffff;
     border: none;
     padding: 15px 42px;
@@ -1011,13 +1013,13 @@ footer {
     cursor: pointer;
     letter-spacing: 0.14em;
     transition: transform 0.3s var(--transition-snappy), box-shadow 0.3s var(--transition-snappy);
-    box-shadow: 0 22px 45px rgba(61, 213, 243, 0.32);
+    box-shadow: 0 22px 45px rgba(var(--brand-primary-rgb), 0.36);
     font-family: 'Orbitron', 'Inter', sans-serif;
 }
 
 .load-more-btn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 28px 60px rgba(61, 213, 243, 0.45);
+    box-shadow: 0 28px 60px rgba(var(--brand-primary-rgb), 0.46);
     color: #ffffff;
 }
 
@@ -2400,7 +2402,7 @@ footer {
 }
 
 .submit-btn {
-    background-color: #0066CC;
+    background: linear-gradient(120deg, rgba(var(--brand-primary-rgb), 0.92), rgba(var(--brand-primary-rgb), 0.82));
     color: #ffffff;
     border: none;
     padding: 16px 32px;
@@ -2417,9 +2419,9 @@ footer {
 }
 
 .submit-btn:hover {
-    background-color: #0052a3;
+    background: linear-gradient(120deg, rgba(var(--brand-primary-rgb), 0.97), rgba(var(--brand-primary-rgb), 0.86));
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+    box-shadow: 0 6px 20px rgba(var(--brand-primary-rgb), 0.35);
 }
 
 .submit-btn:active {
@@ -2681,7 +2683,7 @@ footer {
 }
 
 .read-more-btn {
-    background: linear-gradient(110deg, rgba(61, 213, 243, 0.93), rgba(123, 97, 255, 0.93));
+    background: linear-gradient(110deg, rgba(var(--brand-primary-rgb), 0.95), rgba(var(--brand-primary-rgb), 0.82));
     color: #ffffff;
     border: none;
     padding: 15px 32px;
@@ -2692,12 +2694,12 @@ footer {
     transition: transform 0.35s var(--transition-snappy), box-shadow 0.35s var(--transition-snappy);
     border-radius: 999px;
     text-transform: uppercase;
-    box-shadow: 0 18px 40px rgba(61, 213, 243, 0.28);
+    box-shadow: 0 18px 40px rgba(var(--brand-primary-rgb), 0.32);
 }
 
 .read-more-btn:hover {
     transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 26px 55px rgba(61, 213, 243, 0.38);
+    box-shadow: 0 26px 55px rgba(var(--brand-primary-rgb), 0.4);
 }
 
 .sales-video {
@@ -2977,7 +2979,7 @@ footer {
 .view-more-btn {
     background: transparent;
     color: var(--color-text);
-    border: 1px solid rgba(61, 213, 243, 0.6);
+    border: 1px solid rgba(var(--brand-primary-rgb), 0.7);
     padding: 12px 26px;
     font-size: 13px;
     font-weight: 600;
@@ -2994,12 +2996,11 @@ footer {
     content: "→";
     margin-left: 8px;
     transition: transform 0.3s ease;
-    background: radial-gradient(circle at 30% 40%, rgba(123, 97, 255, 0.14), transparent 55%),
-                radial-gradient(circle at 70% 60%, rgba(61, 213, 243, 0.14), transparent 55%),
-                linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(236, 242, 255, 0.92));
-    background: linear-gradient(110deg, rgba(61, 213, 243, 0.9), rgba(123, 97, 255, 0.9));
+    background: radial-gradient(circle at 30% 40%, rgba(var(--brand-primary-rgb), 0.18), transparent 58%),
+                radial-gradient(circle at 72% 62%, rgba(var(--brand-primary-rgb), 0.12), transparent 55%),
+                linear-gradient(110deg, rgba(var(--brand-primary-rgb), 0.94), rgba(var(--brand-primary-rgb), 0.86));
     color: #ffffff;
-    box-shadow: 0 20px 46px rgba(61, 213, 243, 0.35);
+    box-shadow: 0 20px 46px rgba(var(--brand-primary-rgb), 0.36);
     transform: translateY(-4px);
 }
 
@@ -3601,7 +3602,7 @@ footer {
 .contact-container {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 540px;
     display: flex;
     flex-direction: column;
     background: linear-gradient(150deg, rgba(255, 255, 255, 0.96), rgba(238, 244, 255, 0.94));
@@ -3676,7 +3677,7 @@ footer {
     background: linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(236, 242, 255, 0.94));
     backdrop-filter: blur(18px);
     border-radius: 24px;
-    padding: 34px;
+    padding: 30px 34px;
     box-sizing: border-box;
     border: 1px solid rgba(134, 166, 235, 0.24);
     box-shadow: 0 25px 60px rgba(152, 172, 232, 0.24);
@@ -3723,7 +3724,7 @@ footer {
 .contact-form button {
     width: 100%;
     padding: 12px; /* 减少按钮内边距 */
-    background: linear-gradient(115deg, rgba(61, 213, 243, 0.85), rgba(123, 97, 255, 0.85));
+    background: linear-gradient(115deg, rgba(var(--brand-primary-rgb), 0.92), rgba(var(--brand-primary-rgb), 0.82));
     color: #ffffff;
     border: none;
     border-radius: 999px;
@@ -3733,12 +3734,12 @@ footer {
     transition: transform 0.35s var(--transition-snappy), box-shadow 0.35s var(--transition-snappy);
     margin-top: 5px; /* 添加一点上边距 */
     box-sizing: border-box;
-    box-shadow: 0 20px 45px rgba(61, 213, 243, 0.3);
+    box-shadow: 0 20px 45px rgba(var(--brand-primary-rgb), 0.34);
 }
 
 .contact-form button:hover {
     transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 28px 60px rgba(61, 213, 243, 0.4);
+    box-shadow: 0 28px 60px rgba(var(--brand-primary-rgb), 0.42);
     color: #ffffff;
 }
 

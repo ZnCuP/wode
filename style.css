@@ -19,6 +19,8 @@
     --shadow-lg: 0 28px 60px rgba(35, 58, 124, 0.16);
     --shadow-md: 0 20px 45px rgba(35, 58, 124, 0.14);
     --shadow-sm: 0 14px 28px rgba(35, 58, 124, 0.12);
+    --color-primary: rgb(1, 51, 103);
+    --color-primary-rgb: 1, 51, 103;
     --backdrop-blur: blur(22px);
     --transition-snappy: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -122,9 +124,9 @@ a:hover {
 .btn {
     display: inline-block;
     padding: 14px 28px;
-    background: linear-gradient(120deg, rgba(61, 213, 243, 0.85), rgba(123, 97, 255, 0.85));
+    background: linear-gradient(120deg, rgba(var(--color-primary-rgb), 0.92), rgba(var(--color-primary-rgb), 0.82));
     color: #ffffff;
-    border: 1px solid rgba(61, 213, 243, 0.6);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.7);
     border-radius: 999px;
     cursor: pointer;
     text-decoration: none;
@@ -133,22 +135,22 @@ a:hover {
     letter-spacing: 0.05em;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 12px 30px rgba(61, 213, 243, 0.25);
+    box-shadow: 0 12px 30px rgba(var(--color-primary-rgb), 0.26);
 }
 
 .btn:hover {
     transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 20px 45px rgba(61, 213, 243, 0.35);
+    box-shadow: 0 20px 45px rgba(var(--color-primary-rgb), 0.36);
 }
 
 .btn-secondary {
-    background: linear-gradient(120deg, rgba(10, 20, 40, 0.9), rgba(24, 36, 70, 0.95));
-    border-color: rgba(123, 97, 255, 0.45);
+    background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.95), rgba(var(--color-primary-rgb), 0.78));
+    border-color: rgba(var(--color-primary-rgb), 0.65);
     color: #ffffff;
 }
 
 .btn-secondary:hover {
-    box-shadow: 0 20px 45px rgba(123, 97, 255, 0.3);
+    box-shadow: 0 20px 45px rgba(var(--color-primary-rgb), 0.34);
 }
 
 /* 卡片样式 */
@@ -328,10 +330,10 @@ img {
 }
 
 .filter-btn.active {
-    background: linear-gradient(120deg, rgba(61, 213, 243, 0.85), rgba(123, 97, 255, 0.85));
+    background: linear-gradient(120deg, rgba(var(--color-primary-rgb), 0.92), rgba(var(--color-primary-rgb), 0.82));
     color: #ffffff;
     border-color: transparent;
-    box-shadow: 0 20px 40px rgba(123, 97, 255, 0.32);
+    box-shadow: 0 20px 40px rgba(var(--color-primary-rgb), 0.34);
 }
 
 .loading {
