@@ -41,8 +41,10 @@
                         <a class="read-more-btn" href="profile" data-translate="readMore">READ MORE</a>
                     </div>
                     <div class="sales-video">
-                        <video controls poster="../assets/company.png" preload="none">
-                            <source src="../assets/videos/info.mp4" type="video/mp4">
+                        <video id="home-video" controls poster="../assets/company.png" preload="none" playsinline>
+                            <!-- MP4 回退源（非 HLS 支持环境） -->
+                            <source src="../assets/videos/info_720p.mp4" type="video/mp4">
+                            <source src="../assets/videos/info_480p.mp4" type="video/mp4">
                             您的浏览器不支持视频播放。
                         </video>
                     </div>
@@ -167,5 +169,26 @@
     <!-- 加载公共组件的脚本 - 使用defer避免阻塞渲染 -->
     <script defer src="../scripts/js/common.js"></script>
     <script defer src="../scripts/js/language.js"></script>
+    <!-- HLS 播放支持：Safari原生，其他浏览器通过 hls.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var video = document.getElementById('home-video');
+            var hlsUrl = '../assets/videos/hls/info/master.m3u8';
+            if (!video) return;
+            // Safari原生支持HLS（application/vnd.apple.mpegurl）
+            if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = hlsUrl;
+            } else if (window.Hls && Hls.isSupported()) {
+                var hls = new Hls({
+                    maxBufferLength: 20,
+                    maxMaxBufferLength: 60,
+                    backBufferLength: 30
+                });
+                hls.loadSource(hlsUrl);
+                hls.attachMedia(video);
+            }
+        });
+    </script>
 </body>
 </html>
